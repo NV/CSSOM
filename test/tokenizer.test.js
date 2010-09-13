@@ -57,7 +57,22 @@ test(".link {/**/color: red}", function(){
 });
 
 
-test("string", function(){
+test("a img {border-width: 0}", function(){
+	var css = "a img {border-width: 0}";
+	var tokens = tokenize(css);
+
+	deepEqual(
+		tokens,
+		[
+			["selector", "a img"],
+			["name", "border-width"],
+			["value", "0"]
+		]
+	);
+});
+
+
+test('.comment:before {content: "/**/"; content: \'* {}\'}', function(){
 	var css = '.comment:before {content: "/**/"; content: \'* {}\'}';
 	var tokens = tokenize(css);
 
@@ -86,5 +101,27 @@ test("html|:not(.main-page) {background-color: rgb(90%, 90.8%, 0)}", function(){
 		]
 	);
 
-//	equals(tokens[0][0])
+});
+
+
+test("@import url(http://ya.ru/foo.css);", function(){
+	var css = "@import url(http://ya.ru/foo.css);";
+	var tokens = tokenize(css);
+	deepEqual(
+		tokens,
+		[
+			["atRule", "@import url(http://ya.ru/foo.css)"]
+		]
+	);
+});
+
+test('@namespace svg "http://www.w3.org/2000/svg";', function(){
+	var css = '@namespace svg "http://www.w3.org/2000/svg";';
+	var tokens = tokenize(css);
+	deepEqual(
+		tokens,
+		[
+			["atRule", '@namespace svg "http://www.w3.org/2000/svg"']
+		]
+	);
 });
