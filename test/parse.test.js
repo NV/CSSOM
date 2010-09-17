@@ -23,7 +23,6 @@ var TESTS = [
 			cssRules: [
 				{
 					selectorText: "a",
-					type: 1,
 					style: {
 						0: "color",
 						color: "red",
@@ -39,7 +38,6 @@ var TESTS = [
 			cssRules: [
 				{
 					selectorText: ".left",
-					type: 1,
 					style: {
 						0: "float",
 						float: "left",
@@ -50,12 +48,42 @@ var TESTS = [
 		}
 	},
 	{
+		input: "h1 {font-family: 'Times New Roman', Helvetica Neue, sans-serif }",
+		result: {
+			cssRules: [
+				{
+					selectorText: "h1",
+					style: {
+						0: "font-family",
+						"font-family": "'Times New Roman', Helvetica Neue, sans-serif",
+						length: 1
+					}
+				}
+			]
+		}
+	},
+	{
+		input: "h2 {font: normal\n1.6em\r\nTimes New Roman,\tserif  ;}",
+		result: {
+			cssRules: [
+				{
+					selectorText: "h2",
+					style: {
+						0: "font",
+						font: "normal 1.6em Times New Roman, serif",
+						length: 1
+					}
+				}
+			]
+		}
+
+	},
+	{
 		input: "#a {b:c;}\n#d {e:f}",
 		result: {
 			cssRules: [
 				{
 					selectorText: "#a",
-					type: 1,
 					style: {
 						0: "b",
 						b: "c",
@@ -63,7 +91,6 @@ var TESTS = [
 					}
 				}, {
 					selectorText: "#d",
-					type: 1,
 					style: {
 						0: "e",
 						e: "f",
@@ -79,7 +106,6 @@ var TESTS = [
 			cssRules: [
 				{
 					selectorText: "*",
-					type: 1,
 					style: {
 						0: "border",
 						border: "none",
@@ -88,13 +114,36 @@ var TESTS = [
 				},
 				{
 					selectorText: "#foo",
-					type: 1,
 					style: {
 						0: "font-size",
 						"font-size": "12px",
 						1: "background",
 						background: "#fff",
 						length: 2
+					}
+				}
+			]
+		}
+	}, {
+		input: "span {display: inline-block !important; vertical-align: middle !important} .error{color:red!important;}",
+		result: {
+			cssRules: [
+				{
+					selectorText: "span",
+					style: {
+						0: "display",
+						1: "vertical-align",
+						display: "inline-block",
+						"vertical-align": "middle",
+						length: 2
+					}
+				},
+				{
+					selectorText: ".error",
+					style: {
+						0: "color",
+						color: "red",
+						length: 1
 					}
 				}
 			]
