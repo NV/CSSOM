@@ -148,6 +148,15 @@ var TESTS = [
 				}
 			]
 		}
+	}, {
+		input: "@media handheld {}",
+		result: {
+			cssRules: [
+				{
+					
+				}
+			]
+		}
 	}
 ];
 
