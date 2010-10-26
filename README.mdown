@@ -18,12 +18,4 @@ CSSOM.js is a pure JavaScript parser and a partial implementation of [CSS Object
 		}
 
 
-It doesn't yet work on Node.js because of some sort of circular dependencies problems.
-
-    require("./CSSOM").parse("")
-    -> TypeError: undefined is not a function
-      at CALL_NON_FUNCTION_AS_CONSTRUCTOR (native)
-      at Object.parse (/Users/nv/Code/CSSOM/lib/parse.js:29:19)
-
-
 ## [Tests](http://nv.github.com/CSSOM/test/)
