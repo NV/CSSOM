@@ -5,17 +5,19 @@ CSSOM.js is a pure JavaScript parser and a partial implementation of [CSS Object
     var CSSOM = require("CSSOM");
     CSSOM.parse("body {color: black}")
     -> {
-			cssRules: [
-				{
-					selectorText: "body",
-					style: {
-						0: "color",
-						color: "black",
-						length: 1
-					}
-				}
-			]
-		}
+      cssRules: [
+        {
+          selectorText: "body",
+          style: {
+            0: "color",
+            color: "black",
+            length: 1
+          }
+        }
+      ]
+    }
 
 
 ## [Tests](http://nv.github.com/CSSOM/test/)
+
+CSSOM.js uses ECMAScript 5 features (such as `Object.defineProperty`) and `__proto__`. It currently works in Google Chrome 6+, Safari 5, and Firefox 4 beta. Opera (including 11 alpha) does not support `Object.defineProperty`. IE (including 9 beta) does not support `__proto__`.
