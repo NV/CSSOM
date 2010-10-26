@@ -8,11 +8,14 @@ test("MediaList", function(){
 
 	m.deleteMedium("screen");
 
-	var expected = [
-		"handheld",
-		"only screen and (max-device-width: 480px)"
-	];
+	strictEqual(m[2], undefined);
+
+	var expected = {
+		0: "handheld",
+		1: "only screen and (max-device-width: 480px)",
+		length: 2
+	};
 
 	equalOwnProperties(m, expected);
-	equal(m.mediaText, expected.join(", "));
+	equal(m.mediaText, [].join.call(expected, ", "));
 });
