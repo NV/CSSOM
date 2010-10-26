@@ -5,23 +5,29 @@
  * TODO: http://github.com/jquery/qunit/issues#issue/39
  */
 function equalOwnProperties(actual, expected, message) {
-	var dummy;
+	var actualDummy = cloneOwnProperties(actual);
+	var expectedDummy = cloneOwnProperties(expected);
+	deepEqual(actualDummy, expectedDummy, message);
+}
 
-	// Damn QUnit.deepEqual thinks ["a"] isn't equal {0:"a", length:1}
-	if (expected instanceof Array) {
-		dummy = [];
-		for (var i=0; i<actual.length; i++) {
-			dummy[i] = actual[i];
-		}
-	} else {
-		dummy = {};
-		for (var key in actual) {
-			if (actual.hasOwnProperty(key)) {
-				dummy[key] = actual[key];
+
+/**
+ * Make a deep copy of an object
+ * @param {Object|Array} object
+ * @return {Object|Array}
+ */
+function cloneOwnProperties(object) {
+	var result = {};
+	for (var key in object) {
+		if (object.hasOwnProperty(key)) {
+			if (typeof object[key] == "object") {
+				result[key] = cloneOwnProperties(object[key]);
+			} else {
+				result[key] = object[key];
 			}
 		}
 	}
-	deepEqual(dummy, expected, message);
+	return result;
 }
 
 
@@ -32,20 +38,8 @@ function equalOwnProperties(actual, expected, message) {
  * @param {string} [message]
  */
 function compare(css, expected, message) {
-
 	var actual = parse(css);
-
-	expected.__proto__ = CSSStyleSheet.prototype;
-	if (expected.cssRules) {
-		for (var i=0, length=expected.cssRules.length; i<length; i++) {
-			expected.cssRules[i].__proto__ = CSSStyleRule.prototype;
-			if (expected.cssRules[i].style) {
-				expected.cssRules[i].style.__proto__ = CSSStyleDeclaration.prototype;
-			}
-		}
-	}
-
 	test(css, function(){
-		deepEqual(actual, expected, message || "");
+		equalOwnProperties(actual, expected, message || "");
 	});
 }
