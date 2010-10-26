@@ -1,0 +1,29 @@
+# CSSOM
+
+CSSOM.js is a pure JavaScript parser and a partial implementation of [CSS Object Model](http://dev.w3.org/csswg/cssom/). 
+
+    var CSSOM = require("CSSOM");
+    CSSOM.parse("body {color: black}")
+    -> {
+			cssRules: [
+				{
+					selectorText: "body",
+					style: {
+						0: "color",
+						color: "black",
+						length: 1
+					}
+				}
+			]
+		}
+
+
+It doesn't yet work on Node.js because of some sort of circular dependencies problems.
+
+    require("./CSSOM").parse("")
+    -> TypeError: undefined is not a function
+      at CALL_NON_FUNCTION_AS_CONSTRUCTOR (native)
+      at Object.parse (/Users/nv/Code/CSSOM/lib/parse.js:29:19)
+
+
+## [Tests](http://nv.github.com/CSSOM/test/)
