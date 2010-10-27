@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CSSOM.js parse method</title>
+	<style type="text/css">
+	html, body {
+		background: #333;
+		font-size: 14px;
+		margin: 0;
+		height: 100%;
+		overflow: hidden;
+	}
+	#output, #style {
+		width: 49%;
+		min-height: 99%;
+		display: inline-block;
+		vertical-align: top;
+	}
+	#style {
+		position: absolute;
+		top: 0;
+		left: 4px;
+		background: #FFF;
+		border: 1px solid #999;
+		font: 14px monospace;
+		white-space: pre-wrap;
+	}
+	#output {
+		position: absolute;
+		top: 0;
+		overflow: auto;
+		right: 0;
+		color: #DDD;
+		margin: 0;
+		height: 100%;
+		padding: 6px 0 4px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#message {
+		visibility: hidden;
+	}
+	.error #message {
+		visibility: visible;
+		position: absolute;
+		padding: 1em;
+		left: 50%;
+		margin-left: -25%;
+		background: black;
+		color: #e34343;
+		font-size: 24px;
+	}
+	</style>
+</head>
+<body>
+<textarea id="style">img {
+  border: none
+}</textarea>
+<pre id="output"></pre>
+<div id="message"></div>
+
+<script src="../lib/StyleSheet.js"></script>
+<script src="../lib/CSSStyleSheet.js"></script>
+<script src="../lib/MediaList.js"></script>
+<script src="../lib/CSSRule.js"></script>
+<script src="../lib/CSSStyleRule.js"></script>
+<script src="../lib/CSSMediaRule.js"></script>
+<script src="../lib/CSSStyleDeclaration.js"></script>
+<script src="../lib/parse.js"></script>
+<script defer>
+var errors = [];
+if (!Object.defineProperty) {
+	errors.push("Object.defineProperty isn’t supported");
+}
+if (!({}).__proto__) {
+	errors.push("__proto__ isn’t supported");
+}
+if (errors.length) {
+	document.getElementById("message").innerHTML = errors.join("<br>");
+	document.body.className = "error";
+	throw errors.join("\n\n");
+}
+
+var style = document.getElementById("style");
+var output = document.getElementById("output")
+
+function outputUpdated(){
+	var value = style.value;
+	if (value != style.prevValue) {
+		output.innerHTML = JSON.stringify(parse(value), null, 2);
+		style.prevValue = value;
+	}
+}
+
+function hashChanged(){
+	var hash = location.hash;
+	var splitted = hash.split("=");
+	if (splitted.length < 2) {
+		return;
+	}
+	var name = splitted[0];
+	var value = splitted[1];
+	if (name == "#css") {
+		style.value = decodeURIComponent(value);
+		outputUpdated();
+	}
+}
+
+hashChanged();
+outputUpdated();
+
+window.onhashchange = hashChanged;
+style.onkeyup = style.onpaste = function changed(){
+	outputUpdated();
+	location.hash = "css=" + encodeURIComponent(style.value);
+}
+</script>
+</body>
+</html>
