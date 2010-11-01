@@ -1,5 +1,5 @@
 test("CSSStyleSheet", function(){
-	var s = new CSSStyleSheet;
+	var s = new CSSOM.CSSStyleSheet;
 	deepEqual(s.cssRules, []);
 
 	s.insertRule("a {color: blue}", 0);

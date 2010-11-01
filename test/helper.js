@@ -38,7 +38,7 @@ function cloneOwnProperties(object) {
  * @param {string} [message]
  */
 function compare(css, expected, message) {
-	var actual = parse(css);
+	var actual = CSSOM.parse(css);
 	test(css, function(){
 		equalOwnProperties(actual, expected, message || "");
 	});

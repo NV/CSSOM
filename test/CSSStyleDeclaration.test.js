@@ -1,5 +1,5 @@
 test("CSSStyleDeclaration", function(){
-	var d = new CSSStyleDeclaration;
+	var d = new CSSOM.CSSStyleDeclaration;
 	
 	d.setProperty("color", "purple");
 	equalOwnProperties(d, {

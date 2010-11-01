@@ -1,5 +1,5 @@
 test("CSSStyleRule", function(){
-	var r = new CSSStyleRule;
+	var r = new CSSOM.CSSStyleRule;
 	r.cssText = "h1:first-of-type {\n\tfont-size: 3em\n}";
 
 	equal(r.cssText, "h1:first-of-type {font-size: 3em;}");

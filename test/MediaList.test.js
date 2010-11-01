@@ -1,5 +1,5 @@
 test("MediaList", function(){
-	var m = new MediaList;
+	var m = new CSSOM.MediaList;
 	strictEqual(m.length, 0);
 
 	m.appendMedium("handheld");
