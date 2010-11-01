@@ -182,7 +182,8 @@ var TESTS = [
 				}
 			]
 		}
-	}, {
+	},
+	{
 		input: "span {display: inline-block !important; vertical-align: middle !important} .error{color:red!important;}",
 		result: {
 			cssRules: [
@@ -206,14 +207,74 @@ var TESTS = [
 				}
 			]
 		}
-	}, {
-		input: "@media handheld {}",
+	},
+	{
+		input: "@media handheld, only screen and (max-device-width: 480px) {body{max-width:480px}}",
 		result: {
 			cssRules: [
 				{
-					
+					media: {
+						0: "handheld",
+						1: "only screen and (max-device-width: 480px)",
+						length: 2
+					},
+					cssRules: [
+						{
+							selectorText: "body",
+							style: {
+								0: "max-width",
+								"max-width": "480px",
+								length: 1
+							}
+						}
+					]
 				}
 			]
+		}
+	},
+	{
+		input: "@media screen, screen, screen {/* Match Firefox and Opera behavior here rather than WebKit. \nSane person shouldn't write like this anyway. */}",
+		result: {
+			cssRules: [
+				{
+					media: {
+						0: "screen",
+						1: "screen",
+						2: "screen",
+						length: 3
+					},
+					cssRules: []
+				}
+			]
+		}
+	},
+	{
+		input: "@media/**/print {*{background:#fff}}",
+		result: {
+			cssRules: [
+				{
+					media: {
+						0: "print",
+						length: 1
+					},
+					cssRules: [
+						{
+							selectorText: "*",
+							style: {
+								0: "background",
+								background: "#fff",
+								length: 1
+							}
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		input: "@mediaall {}",
+		result: {
+			cssRules: []
 		}
 	}
 ];
