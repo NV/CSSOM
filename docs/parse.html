@@ -61,14 +61,7 @@
 <pre id="output"></pre>
 <div id="message"></div>
 
-<script src="../lib/StyleSheet.js"></script>
-<script src="../lib/CSSStyleSheet.js"></script>
-<script src="../lib/MediaList.js"></script>
-<script src="../lib/CSSRule.js"></script>
-<script src="../lib/CSSStyleRule.js"></script>
-<script src="../lib/CSSMediaRule.js"></script>
-<script src="../lib/CSSStyleDeclaration.js"></script>
-<script src="../lib/parse.js"></script>
+<script src="http://github.com/downloads/NV/CSSOM/CSSOM.v0.1.0.js"></script>
 <script defer>
 var errors = [];
 if (!Object.defineProperty) {
@@ -84,12 +77,12 @@ if (errors.length) {
 }
 
 var style = document.getElementById("style");
-var output = document.getElementById("output")
+var output = document.getElementById("output");
 
 function outputUpdated(){
 	var value = style.value;
 	if (value != style.prevValue) {
-		output.innerHTML = JSON.stringify(parse(value), null, 2);
+		output.innerHTML = JSON.stringify(CSSOM.parse(value), null, 2);
 		style.prevValue = value;
 	}
 }
