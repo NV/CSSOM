@@ -76,7 +76,65 @@ var TESTS = [
 				}
 			]
 		}
-
+	},
+	{
+		input: ".icon>*{background-image: url(../images/ramona_strong.gif);}",
+		result: {
+			cssRules: [
+				{
+					selectorText: ".icon>*",
+					style: {
+						0: "background-image",
+						"background-image": "url(../images/ramona_strong.gif)",
+						length: 1
+					}
+				}
+			]
+		}
+	},
+	{
+		input: "*/**/{}",
+		result: {
+			cssRules: [
+				{
+					selectorText: "*",
+					style: {}
+				}
+			]
+		}
+	},
+	{
+		input: "/**/*{}",
+		result: {
+			cssRules: [
+				{
+					selectorText: "*",
+					style: {}
+				}
+			]
+		}
+	},
+	{
+		input: "* /**/*{}",
+		result: {
+			cssRules: [
+				{
+					selectorText: "* *",
+					style: {}
+				}
+			]
+		}
+	},
+	{
+		input: "*/*/*/ *{}",
+		result: {
+			cssRules: [
+				{
+					selectorText: "* *",
+					style: {}
+				}
+			]
+		}
 	},
 	{
 		input: "#a {b:c;}\n#d {e:f}",
