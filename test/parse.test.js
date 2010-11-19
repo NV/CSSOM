@@ -272,6 +272,33 @@ var TESTS = [
 		}
 	},
 	{
+		input: "a{}@media all{b{color:#000}}",
+		result: {
+			cssRules: [
+				{
+					selectorText: "a",
+					style: {}
+				},
+				{
+					media: {
+						0: "all",
+						length: 1
+					},
+					cssRules: [
+						{
+							selectorText: "b",
+							style: {
+								0: "color",
+								color: "#000",
+								length: 1
+							}
+						}
+					]
+				}
+			]
+		}
+	},
+	{
 		input: "@mediaall {}",
 		result: {
 			cssRules: []
