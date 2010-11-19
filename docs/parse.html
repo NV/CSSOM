@@ -24,13 +24,13 @@
 	<style type="text/css">
 	html, body {
 		background: #333;
-		font-size: 14px;
+		font-size: 12px;
 		margin: 0;
 		height: 100%;
 		overflow: hidden;
 	}
-	#output, #style {
-		width: 49%;
+	#output, #style, #serialized {
+		width: 32%;
 		min-height: 99%;
 		display: inline-block;
 		vertical-align: top;
@@ -41,18 +41,32 @@
 		left: 4px;
 		background: #FFF;
 		border: 1px solid #999;
-		font: 14px monospace;
+		font: 12px monospace;
 		white-space: pre-wrap;
 	}
 	#output {
 		position: absolute;
 		top: 0;
 		overflow: auto;
-		right: 0;
+		left: 34%;
 		color: #DDD;
 		margin: 0;
 		height: 100%;
 		padding: 6px 0 4px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#serialized {
+		position: absolute;
+		top: 0;
+		overflow: auto;
+		left: 66%;
+		color: #DDD;
+		border-left: 1px solid #363636;
+		margin: 0;
+		height: 100%;
+		padding: 6px 0 4px 4px;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
@@ -77,6 +91,7 @@
   border: none
 }</textarea>
 <pre id="output"></pre>
+<pre id="serialized"></pre>
 <div id="message"></div>
 <script defer>
 var errors = [];
@@ -94,11 +109,14 @@ if (errors.length) {
 
 var style = document.getElementById("style");
 var output = document.getElementById("output");
+var serialized = document.getElementById("serialized");
 
 function outputUpdated(){
 	var value = style.value;
 	if (value != style.prevValue) {
-		output.innerHTML = JSON.stringify(CSSOM.parse(value), null, 2);
+		var css = CSSOM.parse(value);
+		output.innerHTML = JSON.stringify(css, null, 2);
+		serialized.innerHTML = css.toString();
 		style.prevValue = value;
 	}
 }
