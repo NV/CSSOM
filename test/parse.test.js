@@ -98,7 +98,9 @@ var TESTS = [
 			cssRules: [
 				{
 					selectorText: "*",
-					style: {}
+					style: {
+						length: 0
+					}
 				}
 			]
 		}
@@ -109,7 +111,9 @@ var TESTS = [
 			cssRules: [
 				{
 					selectorText: "*",
-					style: {}
+					style: {
+						length: 0
+					}
 				}
 			]
 		}
@@ -120,7 +124,9 @@ var TESTS = [
 			cssRules: [
 				{
 					selectorText: "* *",
-					style: {}
+					style: {
+						length: 0
+					}
 				}
 			]
 		}
@@ -131,7 +137,9 @@ var TESTS = [
 			cssRules: [
 				{
 					selectorText: "* *",
-					style: {}
+					style: {
+						length: 0
+					}
 				}
 			]
 		}
@@ -277,7 +285,9 @@ var TESTS = [
 			cssRules: [
 				{
 					selectorText: "a",
-					style: {}
+					style: {
+						length: 0
+					}
 				},
 				{
 					media: {

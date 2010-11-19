@@ -98,9 +98,6 @@ var errors = [];
 if (!Object.defineProperty) {
 	errors.push("Object.defineProperty isn’t supported");
 }
-if (!({}).__proto__) {
-	errors.push("__proto__ isn’t supported");
-}
 if (errors.length) {
 	document.getElementById("message").innerHTML = errors.join("<br>");
 	document.body.className = "error";
