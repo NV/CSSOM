@@ -313,6 +313,29 @@ var TESTS = [
 		result: {
 			cssRules: []
 		}
+	},
+	{
+		input: "some invalid junk @media projection {body{background:black}}",
+		result: {
+			cssRules: [
+				{
+					media: {
+						0: "projection",
+						length: 1
+					},
+					cssRules: [
+						{
+							selectorText: "body",
+							style: {
+								0: "background",
+								background: "black",
+								length: 1
+							}
+						}
+					]
+				}
+			]
+		}
 	}
 ];
 
