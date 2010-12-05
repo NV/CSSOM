@@ -10,7 +10,7 @@
 
 /** Resets */
 
-#qunit-wrapper, #qunit-tests, #qunit-tests ol, #qunit-header, #qunit-banner, #qunit-testresult {
+#qunit-wrapper, #qunit-tests, #qunit-tests ol, #qunit-header, #qunit-banner, #qunit-userAgent, #qunit-testresult {
 	margin: 0;
 	padding: 0;
 }
@@ -20,20 +20,24 @@
 
 #qunit-header {
 	font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Helvetica, sans-serif;
-	padding: 0.5em 0 0.5em 1em;
-	font-weight: normal;
+	padding: 0.5em 0 0.5em 1.3em;
+
+	color: #8699a4;
 	background-color: #0d3349;
+
+	font-size: 1.5em;
+	line-height: 1em;
+	font-weight: normal;
 }
 
 #qunit-header a {
 	text-decoration: none;
-	color: #bad2df;
+	color: #c2ccd1;
 }
 
 #qunit-header a:hover,
 #qunit-header a:focus {
-	color: white;
-	text-shadow: 0 0 4px #5deeff;
+	color: #fff;
 }
 
 #qunit-banner.qunit-pass {
@@ -81,13 +85,13 @@
 
 #qunit-tests table {
 	border-collapse: collapse;
+	margin-top: .2em;
 }
 
 #qunit-tests th {
-	font-weight: normal;
 	text-align: right;
 	vertical-align: top;
-	padding-right: .5em;
+	padding: 0 .5em 0 0;
 }
 
 #qunit-tests td {
@@ -119,10 +123,10 @@
 	color: #710909;
 }
 #qunit-tests li.fail .failed {
-	color: #EE5757;
+	color: #E48989;
 }
 #qunit-tests li.fail .passed {
-	color: #d3ff9a;
+	color: #E3C987;
 }
 
 #qunit-tests li li {
@@ -141,7 +145,6 @@
 #qunit-tests li li.pass {
 	color: #5E740B;
 	background-color: #fff;
-	
 }
 
 #qunit-tests .pass                          { color: #2f3424; background-color: #d9dec3; }
@@ -160,9 +163,10 @@
 }
 
 #qunit-tests .fail                          { color: #fff; background-color: #962323; }
-#qunit-tests .fail .module-name             { color: #c28e8e; }
+#qunit-tests .fail .module-name,
+#qunit-tests .fail .counts                  { color: #DEC1C1; }
 
-#qunit-tests .fail .test-actual             { color: #EE5757; }
+#qunit-tests .fail .test-actual             { color: #B72F2F; }
 #qunit-tests .fail .test-expected           { color: green;   }
 
 #qunit-banner.qunit-fail, 
