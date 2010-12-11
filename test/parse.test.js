@@ -26,8 +26,11 @@ var TESTS = [
 					style: {
 						0: "color",
 						color: "red",
+						__starts: 2,
 						length: 1
-					}
+					},
+					__starts: 0,
+					__ends: 14
 				}
 			]
 		}
@@ -41,8 +44,11 @@ var TESTS = [
 					style: {
 						0: "float",
 						float: "left",
+						__starts: 6,
 						length: 1
-					}
+					},
+					__starts: 0,
+					__ends: 20
 				}
 			]
 		}
@@ -56,8 +62,11 @@ var TESTS = [
 					style: {
 						0: "font-family",
 						"font-family": "'Times New Roman', Helvetica Neue, sans-serif",
+						__starts: 3,
 						length: 1
-					}
+					},
+					__starts: 0,
+					__ends: 64
 				}
 			]
 		}
@@ -70,9 +79,12 @@ var TESTS = [
 					selectorText: "h2",
 					style: {
 						0: "font",
-						font: "normal 1.6em Times New Roman, serif",
+						font: "normal\n1.6em\r\nTimes New Roman,\tserif",
+						__starts: 3,
 						length: 1
-					}
+					},
+					__starts: 0,
+					__ends: 50
 				}
 			]
 		}
@@ -86,8 +98,11 @@ var TESTS = [
 					style: {
 						0: "background-image",
 						"background-image": "url(../images/ramona_strong.gif)",
+						__starts: 7,
 						length: 1
-					}
+					},
+					__starts: 0,
+					__ends: 60
 				}
 			]
 		}
@@ -99,8 +114,11 @@ var TESTS = [
 				{
 					selectorText: "*",
 					style: {
+						__starts: 5,
 						length: 0
-					}
+					},
+					__starts: 0,
+					__ends: 7
 				}
 			]
 		}
@@ -112,8 +130,11 @@ var TESTS = [
 				{
 					selectorText: "*",
 					style: {
+						__starts: 5,
 						length: 0
-					}
+					},
+					__starts: 4,
+					__ends: 7
 				}
 			]
 		}
@@ -125,8 +146,11 @@ var TESTS = [
 				{
 					selectorText: "* *",
 					style: {
+						__starts: 7,
 						length: 0
-					}
+					},
+					__starts: 0,
+					__ends: 9
 				}
 			]
 		}
@@ -138,8 +162,11 @@ var TESTS = [
 				{
 					selectorText: "* *",
 					style: {
+						__starts: 8,
 						length: 0
-					}
+					},
+					__starts: 0,
+					__ends: 10
 				}
 			]
 		}
@@ -153,15 +180,21 @@ var TESTS = [
 					style: {
 						0: "b",
 						b: "c",
+						__starts: 3,
 						length: 1
-					}
+					},
+					__starts: 0,
+					__ends: 9
 				}, {
 					selectorText: "#d",
 					style: {
 						0: "e",
 						e: "f",
+						__starts: 13,
 						length: 1
-					}
+					},
+					__starts: 10,
+					__ends: 18
 				}
 			]
 		}
@@ -175,8 +208,11 @@ var TESTS = [
 					style: {
 						0: "border",
 						border: "none",
+						__starts: 2,
 						length: 1
-					}
+					},
+					__starts: 0,
+					__ends: 18
 				},
 				{
 					selectorText: "#foo",
@@ -185,8 +221,11 @@ var TESTS = [
 						"font-size": "12px",
 						1: "background",
 						background: "#fff",
+						__starts: 25,
 						length: 2
-					}
+					},
+					__starts: 20,
+					__ends: 60
 				}
 			]
 		}
@@ -202,16 +241,22 @@ var TESTS = [
 						1: "vertical-align",
 						display: "inline-block",
 						"vertical-align": "middle",
+						__starts: 5,
 						length: 2
-					}
+					},
+					__starts: 0,
+					__ends: 74
 				},
 				{
 					selectorText: ".error",
 					style: {
 						0: "color",
 						color: "red",
+						__starts: 81,
 						length: 1
-					}
+					},
+					__starts: 75,
+					__ends: 103
 				}
 			]
 		}
@@ -232,10 +277,15 @@ var TESTS = [
 							style: {
 								0: "max-width",
 								"max-width": "480px",
+								__starts: 64,
 								length: 1
-							}
+							},
+							__starts: 60,
+							__ends: 81
 						}
-					]
+					],
+					__starts: 0,
+					__ends: 82
 				}
 			]
 		}
@@ -251,7 +301,9 @@ var TESTS = [
 						2: "screen",
 						length: 3
 					},
-					cssRules: []
+					cssRules: [],
+					__starts: 0,
+					__ends: 142
 				}
 			]
 		}
@@ -271,10 +323,15 @@ var TESTS = [
 							style: {
 								0: "background",
 								background: "#fff",
+								__starts: 18,
 								length: 1
-							}
+							},
+							__starts: 17,
+							__ends: 35
 						}
-					]
+					],
+					__starts: 0,
+					__ends: 36
 				}
 			]
 		}
@@ -286,8 +343,11 @@ var TESTS = [
 				{
 					selectorText: "a",
 					style: {
+						__starts: 1,
 						length: 0
-					}
+					},
+					__starts: 0,
+					__ends: 3
 				},
 				{
 					media: {
@@ -300,10 +360,15 @@ var TESTS = [
 							style: {
 								0: "color",
 								color: "#000",
+								__starts: 15,
 								length: 1
-							}
+							},
+							__starts: 14,
+							__ends: 27
 						}
-					]
+					],
+					__starts: 3,
+					__ends: 28
 				}
 			]
 		}
@@ -329,10 +394,15 @@ var TESTS = [
 							style: {
 								0: "background",
 								background: "black",
+								__starts: 41,
 								length: 1
-							}
+							},
+							__starts: 37,
+							__ends: 59
 						}
-					]
+					],
+					__starts: 18,
+					__ends: 60
 				}
 			]
 		}
