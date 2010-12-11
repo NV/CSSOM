@@ -19,12 +19,13 @@ function equalOwnProperties(actual, expected, message) {
 function cloneOwnProperties(object) {
 	var result = {};
 	for (var key in object) {
-		if (object.hasOwnProperty(key)) {
-			if (typeof object[key] == "object") {
-				result[key] = cloneOwnProperties(object[key]);
-			} else {
-				result[key] = object[key];
-			}
+		if (key.charAt(0) == "_" || !object.hasOwnProperty(key)) {
+			continue;
+		}
+		if (typeof object[key] == "object") {
+			result[key] = cloneOwnProperties(object[key]);
+		} else {
+			result[key] = object[key];
 		}
 	}
 	return result;
@@ -59,7 +60,7 @@ function subsetOfOwnProperties(base, another) {
 	var diff = {};
 	var isDiff = false;
 	for (var key in another) {
-		if (!another.hasOwnProperty(key)) {
+		if (key.charAt(0) == "_" || !another.hasOwnProperty(key)) {
 			continue;
 		}
 		if (key in base) {

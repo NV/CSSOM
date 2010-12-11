@@ -22,8 +22,7 @@ CSSOM.js is a CSS parser written in pure JavaScript. It also a partial implement
 
 ## [Tests](http://nv.github.com/CSSOM/test/)
 
-CSSOM.js uses ECMAScript 5 features such as `Object.defineProperty`. It currently works in Google Chrome 6+, Safari 5, Firefox 4 beta and IE9 beta. Opera (including 11 alpha) does not support `Object.defineProperty`.
-
+Works well in Google Chrome 6+, Safari 5+, Firefox 3.6+, Opera 10.63 and IE8+.
 
 ## Build
 
