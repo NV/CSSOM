@@ -17,7 +17,7 @@ test("CSSStyleDeclaration", function(){
 		width: "128px"
 	});
 	
-	equal(d.cssText, "color: purple; width: 128px;");
+	equal(d.cssText, "color: purple; width: 128px !important;");
 	
 	equal(d.getPropertyValue("color"), "purple");
 	equal(d.getPropertyValue("width"), "128px");
@@ -31,5 +31,5 @@ test("CSSStyleDeclaration", function(){
 	d.removeProperty("width");
 	
 	equal(d.cssText, "color: green;");
-	
+
 });
