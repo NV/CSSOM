@@ -118,8 +118,8 @@
 <div id="message"></div>
 <script defer>
 var errors = [];
-if (!Object.defineProperty) {
-	errors.push("Object.defineProperty isn’t supported");
+if (!("__defineGetter__" in {})) {
+	errors.push("Object.prototype.__defineGetter__ isn’t supported");
 }
 if (errors.length) {
 	document.getElementById("message").innerHTML = errors.join("<br>");
