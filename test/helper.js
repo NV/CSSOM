@@ -89,8 +89,7 @@ function subsetOfOwnProperties(base, another) {
  * @param {string} [message]
  */
 function compare(css, expected, message) {
-	var actual = CSSOM.parse(css);
-	test(css, function(){
-		equalOwnProperties(actual, expected, message || "");
+	test(css, function() {
+		equalOwnProperties(CSSOM.parse(css), expected, message || "");
 	});
 }
