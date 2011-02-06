@@ -90,6 +90,24 @@ var TESTS = [
 		}
 	},
 	{
+		input: "h3 {font-family: 'times new roman'} ",
+		result: {
+			cssRules: [
+				{
+					selectorText: "h3",
+					style: {
+						0: "font-family",
+						'font-family': "'times new roman'",
+						__starts: 3,
+						length: 1
+					},
+					__starts: 0,
+					__ends: 35
+				}
+			]
+		}
+	},
+	{
 		input: ".icon>*{background-image: url(../images/ramona_strong.gif);}",
 		result: {
 			cssRules: [
