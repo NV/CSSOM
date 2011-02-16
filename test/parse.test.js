@@ -1,3 +1,5 @@
+module("parse");
+
 var TESTS = [
 	{
 		input: "/* fuuuu */",
@@ -421,6 +423,30 @@ var TESTS = [
 					],
 					__starts: 18,
 					__ends: 60
+				}
+			]
+		}
+	},
+	{
+		input: '@import url(partial.css);\ni {font-style: italic}',
+		result: {
+			cssRules: [
+				{
+					href: 'partial.css',
+					media: {
+						length: 0
+					},
+					styleSheet: {
+						cssRules: []
+					}
+				},
+				{
+					selectorText: "i",
+					style: {
+						0: 'font-style',
+						'font-style': 'italic',
+						length: 1
+					}
 				}
 			]
 		}
