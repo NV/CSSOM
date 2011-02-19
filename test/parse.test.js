@@ -282,6 +282,21 @@ var TESTS = [
 		}
 	},
 	{
+		input: 'img:not(/*)*/[src]){background:url(data:image/png;base64,FooBar)}',
+		result: {
+			cssRules: [
+				{
+					selectorText: 'img:not([src])',
+					style: {
+						0: 'background',
+						background: 'url(data:image/png;base64,FooBar)',
+						length: 1
+					}
+				}
+			]
+		}
+	},
+	{
 		input: "@media handheld, only screen and (max-device-width: 480px) {body{max-width:480px}}",
 		result: {
 			cssRules: [
