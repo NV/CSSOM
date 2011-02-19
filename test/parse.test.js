@@ -297,6 +297,21 @@ var TESTS = [
 		}
 	},
 	{
+		input: ".gradient{background: -moz-linear-gradient(/*);*/top, #1E5799 0%, #7db9e8 100%)}",
+		result: {
+			cssRules: [
+				{
+					selectorText: '.gradient',
+					style: {
+						0: 'background',
+						background: '-moz-linear-gradient(top, #1E5799 0%, #7db9e8 100%)',
+						length: 1
+					}
+				}
+			]
+		}
+	},
+	{
 		input: "@media handheld, only screen and (max-device-width: 480px) {body{max-width:480px}}",
 		result: {
 			cssRules: [
