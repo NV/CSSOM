@@ -480,6 +480,54 @@ var TESTS = [
 				}
 			]
 		}
+	},
+	{
+		input: '@import "partial.css";\ni {font-style: italic}',
+		result: {
+			cssRules: [
+				{
+					href: 'partial.css',
+					media: {
+						length: 0
+					},
+					styleSheet: {
+						cssRules: []
+					}
+				},
+				{
+					selectorText: "i",
+					style: {
+						0: 'font-style',
+						'font-style': 'italic',
+						length: 1
+					}
+				}
+			]
+		}
+	},
+	{
+		input: "@import 'partial.css';\ni {font-style: italic}",
+		result: {
+			cssRules: [
+				{
+					href: 'partial.css',
+					media: {
+						length: 0
+					},
+					styleSheet: {
+						cssRules: []
+					}
+				},
+				{
+					selectorText: "i",
+					style: {
+						0: 'font-style',
+						'font-style': 'italic',
+						length: 1
+					}
+				}
+			]
+		}
 	}
 ];
 
