@@ -14,21 +14,47 @@ function equalOwnProperties(actual, expected, message) {
 /**
  * Make a deep copy of an object
  * @param {Object|Array} object
+ * @params {Array} [stack]
  * @return {Object|Array}
  */
-function cloneOwnProperties(object) {
+function cloneOwnProperties(object, stack) {
+	stack = stack || [];
+	stack.push(object);
 	var result = {};
 	for (var key in object) {
 		if (key.charAt(0) == "_" || !object.hasOwnProperty(key)) {
 			continue;
 		}
 		if (typeof object[key] == "object") {
-			result[key] = cloneOwnProperties(object[key]);
+			var stackIndex = stack.indexOf(object[key]);
+			if (stackIndex > -1) {
+				result[key] = buildPath(stack.length - stackIndex);
+			} else {
+				result[key] = cloneOwnProperties(object[key], stack);
+			}
 		} else {
 			result[key] = object[key];
 		}
 	}
 	return result;
+}
+
+
+/**
+ * buildPath(2) -> '../..'
+ * @param {number} level
+ * @return {string}
+ */
+function buildPath(level) {
+	if (level == 0) {
+		return '.';
+	} else {
+		var result = '..';
+		for (var i = 1; i < level; i++) {
+			result += '/..';
+		}
+		return result;
+	}
 }
 
 
