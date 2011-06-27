@@ -19,10 +19,11 @@ function equalOwnProperties(actual, expected, message) {
  */
 function cloneOwnProperties(object, stack) {
 	stack = stack || [];
+	skip = ['parentRule'];
 	stack.push(object);
 	var result = {};
 	for (var key in object) {
-		if (key.charAt(0) == "_" || !object.hasOwnProperty(key)) {
+		if (key.charAt(0) == "_" || !object.hasOwnProperty(key) || skip.indexOf(key) > -1) {
 			continue;
 		}
 		if (typeof object[key] == "object") {
