@@ -528,6 +528,70 @@ var TESTS = [
 				}
 			]
 		}
+	},
+	{
+		input: "@-webkit-keyframes mymove {\nfrom {top:0px}\nto {top:200px}\n}",
+		result: {
+		  "cssRules": {
+			"0": {
+			  "name": "mymove",
+			  "cssRules": {
+				"0": {
+				  "keyText": "from",
+				  "style": {
+					"0": "top",
+					"top": "0px",
+					"length": 1
+					}
+				},
+				"1": {
+				  "keyText": "to",
+				  "style": {
+					"0": "top",
+					"top": "200px",
+					"length": 1
+					}
+				}
+			  }
+			}
+		  }
+		}
+	},
+	{
+		input: "@-webkit-keyframes mymovepercent {\n0% {top:0px;}\n50% {top:200px;}\n100% {top:300px;}}",
+		result: {
+		  "cssRules": {
+			"0": {
+			  "name": "mymovepercent",
+			  "cssRules": {
+				"0": {
+				  "keyText": "0%",
+				  "style": {
+					"0": "top",
+					"top": "0px",
+					"length": 1
+					}
+				},
+				"1": {
+				  "keyText": "50%",
+				  "style": {
+					"0": "top",
+					"top": "200px",
+					"length": 1
+					}
+				},
+				"2": {
+				  "keyText": "100%",
+				  "style": {
+					"0": "top",
+					"top": "300px",
+					"length": 1
+					}
+				}
+			  }
+			}
+		  }
+		}
 	}
 ];
 
