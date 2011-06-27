@@ -18,12 +18,11 @@ function equalOwnProperties(actual, expected, message) {
  * @return {Object|Array}
  */
 function cloneOwnProperties(object, stack) {
-	stack = stack || [];
-	skip = ['parentRule'];
+	stack = stack ? stack.slice(0) : [];
 	stack.push(object);
 	var result = {};
 	for (var key in object) {
-		if (key.charAt(0) == "_" || !object.hasOwnProperty(key) || skip.indexOf(key) > -1) {
+		if (key.charAt(0) == "_" || !object.hasOwnProperty(key)) {
 			continue;
 		}
 		if (typeof object[key] == "object") {
