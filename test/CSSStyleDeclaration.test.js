@@ -31,5 +31,13 @@ test("CSSStyleDeclaration", function(){
 	d.removeProperty("width");
 	
 	equal(d.cssText, "color: green;");
+	equal(d.length, 1);
 
+	d.width = "100%";
+	equal(d.length, 2);
+	equal(d[0], "color");
+	equal(d[1], "width");
+
+	d.color = "papayawhip";
+	equal(d.cssText, "color: papayawhip; width: 100%;");
 });

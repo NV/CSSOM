@@ -21,10 +21,8 @@ function cloneOwnProperties(object, stack) {
 	stack = stack ? stack.slice(0) : [];
 	stack.push(object);
 	var result = {};
-	for (var key in object) {
-		if (key.charAt(0) == "_" || !object.hasOwnProperty(key)) {
-			continue;
-		}
+
+	function cloneProperty(key) {
 		if (typeof object[key] == "object") {
 			var stackIndex = stack.indexOf(object[key]);
 			if (stackIndex > -1) {
@@ -35,6 +33,20 @@ function cloneOwnProperties(object, stack) {
 		} else {
 			result[key] = object[key];
 		}
+	}
+
+	for (var key in object) {
+		if (key.charAt(0) == "_" || !object.hasOwnProperty(key)) {
+			continue;
+		}
+		cloneProperty(key);
+	}
+	// HACK: CSSStyleDeclaration.length is no longer an enumerable property
+	// but is included in all test cases. Instead of patching the tests (and
+	// eventually missing/breaking things), we adjust this helper to always
+	// include the length property if present.
+	if (object.length !== undefined) {
+		cloneProperty('length');
 	}
 	return result;
 }
