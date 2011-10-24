@@ -10,7 +10,7 @@
 		"url": "git://github.com/NV/CSSOM.git"
 	},
 	"bugs": {
-		"web": "https://github.com/NV/CSSOM/issues"
+		"url": "https://github.com/NV/CSSOM/issues"
 	},
 	"directories": {
 		"doc": "./doc",
