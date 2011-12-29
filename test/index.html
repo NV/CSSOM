@@ -4,27 +4,7 @@
 	<title>CSSOM tests</title>
 	<link rel="stylesheet" href="vendor/qunit.css" type="text/css">
 	<script src="vendor/qunit.js"></script>
-	<script>
-	var exports = {};
-	function require(){
-		return exports;
-	}
-	</script>
-	<script src="../lib/CSSStyleDeclaration.js"></script>
-	<script src="../lib/CSSRule.js"></script>
-	<script src="../lib/CSSStyleRule.js"></script>
-	<script src="../lib/CSSImportRule.js"></script>
-	<script src="../lib/CSSKeyframesRule.js"></script>
-	<script src="../lib/CSSKeyframeRule.js"></script>
-	<script src="../lib/MediaList.js"></script>
-	<script src="../lib/CSSMediaRule.js"></script>
-	<script src="../lib/StyleSheet.js"></script>
-	<script src="../lib/CSSStyleSheet.js"></script>
-	<script src="../lib/parse.js"></script>
-	<script src="../lib/clone.js"></script>
-	<script>
-	window.CSSOM = exports;
-	</script>
+	<script src="../src/loader.js"></script>
 	<script src="helper.js"></script>
 	<script src="CSSStyleSheet.test.js"></script>
 	<script src="CSSStyleDeclaration.test.js"></script>

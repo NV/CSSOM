@@ -3,24 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>CSSOM.js parse method</title>
-	<script>
-	var exports = {};
-	function require(){
-		return exports;
-	}
-	</script>
-	<script src="../lib/CSSStyleDeclaration.js"></script>
-	<script src="../lib/CSSRule.js"></script>
-	<script src="../lib/CSSStyleRule.js"></script>
-	<script src="../lib/CSSImportRule.js"></script>
-	<script src="../lib/MediaList.js"></script>
-	<script src="../lib/CSSMediaRule.js"></script>
-	<script src="../lib/StyleSheet.js"></script>
-	<script src="../lib/CSSStyleSheet.js"></script>
-	<script src="../lib/parse.js"></script>
-	<script>
-	window.CSSOM = exports;
-	</script>
+	<script src="../src/loader.js"></script>
 	<style type="text/css">
 	html, body {
 		background: #333;
@@ -267,8 +250,10 @@ function hashChanged(){
 	}
 }
 
-hashChanged();
-outputUpdated();
+window.onload = function() {
+	hashChanged();
+	outputUpdated();
+};
 
 window.onhashchange = hashChanged;
 style.onkeyup = style.onpaste = function changed(){
