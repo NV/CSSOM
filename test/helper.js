@@ -22,10 +22,10 @@ function cloneOwnProperties(object, stack) {
 	stack.push(object);
 	var result = {};
 	for (var key in object) {
-		if (key.charAt(0) == "_" || !object.hasOwnProperty(key)) {
+		if (key.charAt(0) === "_" || !object.hasOwnProperty(key)) {
 			continue;
 		}
-		if (typeof object[key] == "object") {
+		if (typeof object[key] === "object") {
 			var stackIndex = stack.indexOf(object[key]);
 			if (stackIndex > -1) {
 				result[key] = buildPath(stack.length - stackIndex);
@@ -46,7 +46,7 @@ function cloneOwnProperties(object, stack) {
  * @return {string}
  */
 function buildPath(level) {
-	if (level == 0) {
+	if (level === 0) {
 		return '.';
 	} else {
 		var result = '..';
@@ -79,14 +79,14 @@ function subsetOfOwnProperties(base, another) {
 		return false;
 	}
 
-	if (typeof base != "object" || typeof another != "object") {
+	if (typeof base !== "object" || typeof another !== "object") {
 		return another;
 	}
 
 	var diff = {};
 	var isDiff = false;
 	for (var key in another) {
-		if (key.charAt(0) == "_" || !another.hasOwnProperty(key)) {
+		if (key.charAt(0) === "_" || !another.hasOwnProperty(key)) {
 			continue;
 		}
 		if (key in base) {
