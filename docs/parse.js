@@ -8,7 +8,7 @@ function byId(id) {
  */
 function makeIndent(depth) {
 	var INDENT = '    ';
-	if (depth == 1) {
+	if (depth === 1) {
 		return INDENT;
 	} else if (depth < 1) {
 		return '';
@@ -34,7 +34,7 @@ makeIndent.cache = {};
  * @return {string}
  */
 function buildPath(level) {
-	if (level == 0) {
+	if (level === 0) {
 		return '.';
 	} else {
 		var result = '..';
@@ -72,7 +72,7 @@ function inspect(object, depth, stack) {
 	switch (typeof object) {
 		case 'object':
 			var level = stack.indexOf(object);
-			if (level != -1) {
+			if (level !== -1) {
 				return buildPath(level);
 			}
 			stack = [object].concat(stack);
@@ -112,7 +112,7 @@ var serialized = byId("serialized");
 
 function outputUpdated() {
 	var value = style.value;
-	if (value != style.prevValue) {
+	if (value !== style.prevValue) {
 		style.prevValue = value;
 		var css = CSSOM.parse(value);
 		output.innerHTML = inspect(css);
@@ -131,7 +131,7 @@ function hashChanged() {
 	}
 	var name = splitted[0];
 	var value = splitted[1];
-	if (name == "#css") {
+	if (name === "#css") {
 		style.value = decodeURIComponent(value);
 		outputUpdated();
 		return true;
