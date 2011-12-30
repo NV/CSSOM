@@ -7,7 +7,6 @@ html, body {
 }
 body {
 	padding-bottom: 1.7em;
-	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
@@ -22,6 +21,11 @@ td {
 h1 {
 	font: normal 1em sans-serif;
 	display: inline;
+}
+pre {
+	margin-top: 0;
+	padding: 2px .5em;
+	font: 12px/15px monospace;
 }
 #labels {
 	color: #FFE992;
@@ -59,8 +63,11 @@ h1 {
 .style-cell textarea {
 	width: 99%;
 	height: 100%;
-	font: 12px monospace;
+	font: 12px/15px monospace;
 	white-space: pre-wrap;
+	padding: 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
 }
 .serialized-cell {
 	border-left: 1px solid #363636;
