@@ -49,23 +49,9 @@ function buildPath(level) {
  * @return {string}
  */
 function stringifyObjectKey(key) {
-	return /^[a-zA-Z_$][A-Za-z0-9_$]*$/.test(key) ?
+	return /^[a-z0-9_$]+$/i.test(key) ?
 		key :
-		'"' + escapeDoubleQuotes(key) + '"';
-}
-
-
-/**
- * @param {string} string
- * @return {string}
- * @see http://stackoverflow.com/questions/7382115/escape-quotes-in-a-string-with-backslash
- */
-function escapeDoubleQuotes(string) {
-	return string.replace(/(\\*)(")/g, function(all, backslashes, quote) {
-		return backslashes.length % 2 ?
-			all :
-			backslashes + '\\' + quote;
-	});
+		JSON.stringify(key);
 }
 
 
@@ -106,7 +92,6 @@ function inspect(object, depth, stack) {
 }
 
 
-
 var errors = [];
 if (!("__defineGetter__" in {})) {
 	errors.push("Object.prototype.__defineGetter__ isn’t supported");
@@ -121,39 +106,48 @@ var style = document.getElementById("style");
 var output = document.getElementById("output");
 var serialized = document.getElementById("serialized");
 
-function outputUpdated(){
+function outputUpdated() {
 	var value = style.value;
 	if (value != style.prevValue) {
+		style.prevValue = value;
 		var css = CSSOM.parse(value);
 		output.innerHTML = inspect(css);
 		serialized.innerHTML = css.toString();
-		style.prevValue = value;
 	}
 }
 
-function hashChanged(){
+/**
+ * @return {boolean} update happend or not
+ */
+function hashChanged() {
 	var hash = location.hash;
 	var splitted = hash.split("=");
 	if (splitted.length < 2) {
-		return;
+		return false;
 	}
 	var name = splitted[0];
 	var value = splitted[1];
 	if (name == "#css") {
 		style.value = decodeURIComponent(value);
 		outputUpdated();
+		return true;
 	}
+	return false;
 }
 
 window.onload = function() {
-	hashChanged();
-	outputUpdated();
+	hashChanged() || outputUpdated();
 };
 
 window.onhashchange = hashChanged;
 style.onkeyup = style.onpaste = function changed(){
 	outputUpdated();
 };
-style.onchange = function updateLocation(){
-	location.hash = "css=" + encodeURIComponent(style.value);
+style.onchange = function updateLocation() {
+	if (style.value.length < 1024) {
+		location.hash = "css=" + encodeURIComponent(style.value);
+	} else {
+		// Huge location.hash slows down the browser :(
+		location.hash = 'css_is_too_big';
+	}
 };
