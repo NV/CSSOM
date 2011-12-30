@@ -1,3 +1,7 @@
+function byId(id) {
+	return document.getElementById(id);
+}
+
 /**
  * @param {number} depth
  * @return {string}
@@ -97,14 +101,14 @@ if (!("__defineGetter__" in {})) {
 	errors.push("Object.prototype.__defineGetter__ isn’t supported");
 }
 if (errors.length) {
-	document.getElementById("message").innerHTML = errors.join("<br>");
+	byId("message").innerHTML = errors.join("<br>");
 	document.body.className = "error";
 	throw errors.join("\n\n");
 }
 
-var style = document.getElementById("style");
-var output = document.getElementById("output");
-var serialized = document.getElementById("serialized");
+var style = byId("style");
+var output = byId("output");
+var serialized = byId("serialized");
 
 function outputUpdated() {
 	var value = style.value;
