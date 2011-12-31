@@ -1,3 +1,9 @@
+if (!Array.isArray) {
+	Array.isArray = function(array) {
+		return {}.toString.call(array) === '[object Array]';
+	};
+}
+
 function byId(id) {
 	return document.getElementById(id);
 }
@@ -61,38 +67,97 @@ function stringifyObjectKey(key) {
 
 /**
  * @param {Object} object
- * @param {number} [depth]
- * @param {Array} [stack]
- * @return {string}
+ * @return {DocumentFragment}
  */
-function inspect(object, depth, stack) {
-	depth ? depth++ : (depth = 1);
-	stack = stack || (stack = []);
+function inspect(object) {
 
-	switch (typeof object) {
-		case 'object':
-			var level = stack.indexOf(object);
-			if (level !== -1) {
-				return buildPath(level);
-			}
-			stack = [object].concat(stack);
+	var accumulator = document.createDocumentFragment();
+	_inspect(accumulator, object, 0, []);
+	return accumulator;
 
-			var properties = [];
-			var indent = makeIndent(depth);
-			for (var key in object) {
-				if (object.hasOwnProperty(key)) {
-					properties.push(indent + stringifyObjectKey(key) + '<span>: </span>' + inspect(object[key], depth, stack));
+	/**
+	 * @param {DocumentFragment} root
+	 * @param {Object} object
+	 * @param {number} depth
+	 * @param {Array} stack
+	 */
+	function _inspect(root, object, depth, stack) {
+		switch (typeof object) {
+			case 'object':
+				var level = stack.indexOf(object);
+				if (level !== -1) {
+					root.appendChild(document.createTextNode(buildPath(depth - level)));
+					break;
 				}
-			}
-			var indentInside = makeIndent(depth - 1);
-			return '<span>{</span>\n' + properties.join('<span>,</span>\n') + '\n' + indentInside + '<span>}</span>';
+				depth++;
+				var stackLength = stack.push(object);
 
-		case 'string':
-			return '"' + object + '"';
+				var indent = document.createTextNode(makeIndent(depth));
+				var span = document.createElement('span');
+				span.textContent = ',\n';
+				var comma = span;
+				if (Array.isArray(object)) {
+					var length = object.length;
+					if (length === 0) {
+						span = span.cloneNode(false);
+						span.textContent = '[]';
+						root.appendChild(span);
+					} else {
+						span = span.cloneNode(false);
+						span.textContent = '[\n';
+						root.appendChild(span);
+						for (var i = 0; i < length; i++) {
+							root.appendChild(indent.cloneNode(true));
+							_inspect(root, object[i], depth, stack);
+							stack.length = stackLength;
+							if (i < length - 1) {
+								root.appendChild(comma.cloneNode(true));
+							}
+						}
+						span = span.cloneNode(false);
+						span.textContent = '\n' + makeIndent(depth - 1) + ']';
+						root.appendChild(span);
+					}
+				} else {
+					var keys = Object.keys(object);
+					length = keys.length;
+					if (length === 0) {
+						span = span.cloneNode(false);
+						span.textContent = '{}';
+						root.appendChild(span);
+					} else {
+						span = span.cloneNode(false);
+						span.textContent = '{\n';
+						root.appendChild(span);
+						var colon = span.cloneNode(false);
+						colon.textContent = ': ';
+						for (i = 0; i < length; i++) {
+							var key = keys[i];
+							root.appendChild(indent.cloneNode(true));
+							root.appendChild(document.createTextNode(stringifyObjectKey(key)));
+							root.appendChild(colon.cloneNode(true));
+							_inspect(root, object[key], depth, stack);
+							stack.length = stackLength;
+							if (i < length - 1) {
+								root.appendChild(comma.cloneNode(true));
+							}
+						}
+						span = span.cloneNode(false);
+						span.textContent = '\n' + makeIndent(depth - 1) + '}';
+						root.appendChild(span);
+					}
+				}
+				break;
 
-		default:
-			return object.toString();
+			case 'string':
+				root.appendChild(document.createTextNode(JSON.stringify(object)));
+				break;
+
+			default:
+				root.appendChild(document.createTextNode(object.toString()));
+		}
 	}
+
 }
 
 
@@ -115,7 +180,8 @@ function outputUpdated() {
 	if (value !== style.prevValue) {
 		style.prevValue = value;
 		var css = CSSOM.parse(value);
-		output.innerHTML = inspect(css);
+		output.innerHTML = '';
+		output.appendChild(inspect(css));
 		serialized.innerHTML = css.toString();
 	}
 }
