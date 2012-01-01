@@ -2,7 +2,7 @@ var PATH = require("path");
 var FS = require("fs");
 
 function readFile(path) {
-	var abs_path = PATH.join(__dirname, "lib", path);
+	var abs_path = PATH.join(__dirname, path);
 	return FS.readFileSync(abs_path, "utf8");
 }
 
@@ -11,30 +11,22 @@ function stripCommonJS(text) {
 }
 
 desc("Packages lib files into the one huge");
-task("default", ["lib/index.js"], function(){
-	var files = [readFile("CSSOM.js")];
-	var index_file = readFile("index.js");
+task("default", ["build/CSSOM.js"]);
 
-	(function(){
-		var exports = {};
-		function require(path) {
-			var text = readFile(path + ".js");
-			files.push(stripCommonJS(text).trimLeft());
-			return {};
-		}
-		eval(index_file);
-	})();
+directory("build");
 
-	var build_dir = PATH.join(__dirname, "build");
-	try {
-		FS.statSync(build_dir);
-	} catch(e) {
-		FS.mkdirSync(build_dir, 0755);
-	}
-	var build_path = PATH.join(build_dir, "CSSOM.js");
-	FS.writeFileSync(build_path, files.join(""));
+file("build/CSSOM.js", ["src/files.js", "src/CSSOM.js", "build"], function() {
+	var parts = [readFile("src/CSSOM.js")];
+	require("./src/files").files.forEach(function(path) {
+		var text = readFile("lib/" + path + ".js");
+		parts.push(stripCommonJS(text).trimLeft());
+	});
+	FS.writeFileSync("build/CSSOM.js", parts.join(""));
 	process.stdout.write("build/CSSOM.js is done\n");
 });
+
+desc("Creates index file for npm package");
+task("lib", ["lib/index.js"]);
 
 file("lib/index.js", ["src/files.js"], function() {
 	FS.writeFileSync("lib/index.js", "'use strict';\n\n" + require('./src/files').files.map(function(fileName) {
