@@ -13,9 +13,7 @@
 		"url": "https://github.com/NV/CSSOM/issues"
 	},
 	"directories": {
-		"doc": "./doc",
-		"lib": "./lib",
-		"test": "./test"
+		"lib": "./lib"
 	},
 	"main": "./lib/index.js",
 	"engines": {
