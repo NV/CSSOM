@@ -71,9 +71,9 @@ function stringifyObjectKey(key) {
  */
 function inspect(object) {
 
-	var accumulator = document.createDocumentFragment();
-	_inspect(accumulator, object, 0, []);
-	return accumulator;
+	var root = document.createDocumentFragment();
+	_inspect(root, object, 0, []);
+	return root;
 
 	/**
 	 * @param {DocumentFragment} root
