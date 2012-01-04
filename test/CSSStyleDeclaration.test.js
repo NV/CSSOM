@@ -34,6 +34,9 @@ test("CSSStyleDeclaration", function(){
 
 	equal(d.cssText, "color: green;");
 
+	d.color = "papayawhip";
+	d.width = "100%";
+	equal(d.cssText, "color: papayawhip; width: 100%;");
 });
 
 test("CSSStyleDeclaration#cssText", function(){
