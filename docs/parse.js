@@ -84,6 +84,13 @@ function inspect(object) {
 	function _inspect(root, object, depth, stack) {
 		switch (typeof object) {
 			case 'object':
+			case 'null': // ES 5.1
+				if (!object) {
+					//null
+					root.appendChild(document.createTextNode('null'));
+					break;
+				}
+
 				var level = stack.indexOf(object);
 				if (level !== -1) {
 					root.appendChild(document.createTextNode(buildPath(depth - level)));
