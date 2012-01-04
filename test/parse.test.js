@@ -4,19 +4,22 @@ var TESTS = [
 	{
 		input: "/* fuuuu */",
 		result: {
-			cssRules: []
+			cssRules: [],
+			parentStyleSheet: null
 		}
 	},
 	{
 		input: "/**/",
 		result: {
-			cssRules: []
+			cssRules: [],
+			parentStyleSheet: null
 		}
 	},
 	{
 		input: "/*a {content: '* {color:#000}'}*/",
 		result: {
-			cssRules: []
+			cssRules: [],
+			parentStyleSheet: null
 		}
 	},
 	{
@@ -32,12 +35,15 @@ var TESTS = [
 							__starts: 2,
 							length: 1
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 14
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			return result;
 		})()
 	},
@@ -54,12 +60,15 @@ var TESTS = [
 							__starts: 6,
 							length: 1
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 20
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			return result;
 		})()
 	},
@@ -76,12 +85,15 @@ var TESTS = [
 							__starts: 3,
 							length: 1
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 64
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			return result;
 		})()
 	},
@@ -98,12 +110,15 @@ var TESTS = [
 							__starts: 3,
 							length: 1
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 50
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			return result;
 		})()
 	},
@@ -120,12 +135,15 @@ var TESTS = [
 							__starts: 3,
 							length: 1
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 35
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			return result;
 		})()
 	},
@@ -142,12 +160,15 @@ var TESTS = [
 							__starts: 7,
 							length: 1
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 60
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			return result;
 		})()
 	},
@@ -162,12 +183,15 @@ var TESTS = [
 							__starts: 5,
 							length: 0
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 7
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			return result;
 		})()
 	},
@@ -182,12 +206,15 @@ var TESTS = [
 							__starts: 5,
 							length: 0
 						},
+						parentRule: null,
 						__starts: 4,
 						__ends: 7
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			return result;
 		})()
 	},
@@ -202,12 +229,15 @@ var TESTS = [
 							__starts: 7,
 							length: 0
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 9
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			return result;
 		})()
 	},
@@ -222,12 +252,15 @@ var TESTS = [
 							__starts: 8,
 							length: 0
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 10
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			return result;
 		})()
 	},
@@ -244,6 +277,7 @@ var TESTS = [
 							__starts: 3,
 							length: 1
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 9
 					}, {
@@ -254,13 +288,16 @@ var TESTS = [
 							__starts: 13,
 							length: 1
 						},
+						parentRule: null,
 						__starts: 10,
 						__ends: 18
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
-			result.cssRules[1].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result.cssRules[1].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
+			result.cssRules[1].style.parentRule = result.cssRules[1];
 			return result;
 		})()
 	},
@@ -277,6 +314,7 @@ var TESTS = [
 							__starts: 2,
 							length: 1
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 18
 					},
@@ -290,13 +328,16 @@ var TESTS = [
 							__starts: 25,
 							length: 2
 						},
+						parentRule: null,
 						__starts: 20,
 						__ends: 60
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
-			result.cssRules[1].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result.cssRules[1].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
+			result.cssRules[1].style.parentRule = result.cssRules[1];
 			return result;
 		})()
 	},
@@ -315,6 +356,7 @@ var TESTS = [
 							__starts: 5,
 							length: 2
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 74
 					},
@@ -326,13 +368,16 @@ var TESTS = [
 							__starts: 81,
 							length: 1
 						},
+						parentRule: null,
 						__starts: 75,
 						__ends: 103
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
-			result.cssRules[1].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result.cssRules[1].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
+			result.cssRules[1].style.parentRule = result.cssRules[1];
 			return result;
 		})()
 	},
@@ -343,15 +388,18 @@ var TESTS = [
 				cssRules: [
 					{
 						selectorText: 'img:not([src])',
+						parentRule: null,
 						style: {
 							0: 'background',
 							background: 'url(data:image/png;base64,FooBar)',
 							length: 1
 						}
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			return result;
 		})()
 	},
@@ -362,15 +410,18 @@ var TESTS = [
 				cssRules: [
 					{
 						selectorText: '.gradient',
+						parentRule: null,
 						style: {
 							0: 'background',
 							background: '-moz-linear-gradient(top, #1E5799 0%, #7db9e8 100%)',
 							length: 1
 						}
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			return result;
 		})()
 	},
@@ -398,12 +449,15 @@ var TESTS = [
 								__ends: 81
 							}
 						],
+						parentRule: null,
 						__starts: 0,
 						__ends: 82
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0];
 			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0];
 			return result;
 		})()
@@ -421,12 +475,14 @@ var TESTS = [
 							length: 3
 						},
 						cssRules: [],
+						parentRule: null,
 						__starts: 0,
 						__ends: 142
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result;
 			return result;
 		})()
 	},
@@ -453,13 +509,16 @@ var TESTS = [
 								__ends: 35
 							}
 						],
+						parentRule: null,
 						__starts: 0,
 						__ends: 36
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result;
 			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0];
+			result.cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0];
 			return result;
 		})()
 	},
@@ -474,6 +533,7 @@ var TESTS = [
 							__starts: 1,
 							length: 0
 						},
+						parentRule: null,
 						__starts: 0,
 						__ends: 3
 					},
@@ -495,21 +555,25 @@ var TESTS = [
 								__ends: 27
 							}
 						],
+						parentRule: null,
 						__starts: 3,
 						__ends: 28
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
-			result.cssRules[1].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result.cssRules[1].parentStyleSheet = result.cssRules[1].cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
 			result.cssRules[1].cssRules[0].parentRule = result.cssRules[1];
+			result.cssRules[1].cssRules[0].style.parentRule = result.cssRules[1].cssRules[0];
 			return result;
 		})()
 	},
 	{
 		input: "@mediaall {}",
 		result: {
-			cssRules: []
+			cssRules: [],
+			parentStyleSheet: null
 		}
 	},
 	{
@@ -535,13 +599,16 @@ var TESTS = [
 								__ends: 59
 							}
 						],
+						parentRule: null,
 						__starts: 18,
 						__ends: 60
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result;
 			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0];
+			result.cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0];
 			return result;
 		})()
 	},
@@ -555,22 +622,25 @@ var TESTS = [
 						media: {
 							length: 0
 						},
+						parentRule: null,
 						styleSheet: {
 							cssRules: []
 						}
 					},
 					{
 						selectorText: "i",
+						parentRule: null,
 						style: {
 							0: 'font-style',
 							'font-style': 'italic',
 							length: 1
 						}
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
-			result.cssRules[1].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].styleSheet.parentStyleSheet = result.cssRules[1].parentStyleSheet = result;
+			result.cssRules[1].style.parentRule = result.cssRules[1];
 			return result;
 		})()
 	},
@@ -584,22 +654,26 @@ var TESTS = [
 						media: {
 							length: 0
 						},
+						parentRule: null,
 						styleSheet: {
 							cssRules: []
 						}
 					},
 					{
 						selectorText: "i",
+						parentRule: null,
 						style: {
 							0: 'font-style',
 							'font-style': 'italic',
 							length: 1
 						}
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
-			result.cssRules[1].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].styleSheet.parentStyleSheet = result.cssRules[1].parentStyleSheet = result;
+			result.cssRules[1].style.parentRule = result.cssRules[1];
+			result.cssRules[0].styleSheet.parentStyleSheet = result;
 			return result;
 		})()
 	},
@@ -613,22 +687,25 @@ var TESTS = [
 						media: {
 							length: 0
 						},
+						parentRule: null,
 						styleSheet: {
 							cssRules: []
 						}
 					},
 					{
 						selectorText: "i",
+						parentRule: null,
 						style: {
 							0: 'font-style',
 							'font-style': 'italic',
 							length: 1
 						}
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
-			result.cssRules[1].parentRule = result;
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].styleSheet.parentStyleSheet = result.cssRules[1].parentStyleSheet = result;
+			result.cssRules[1].style.parentRule = result.cssRules[1];
 			return result;
 		})()
 	},
@@ -656,13 +733,16 @@ var TESTS = [
 									length: 1
 								}
 							}
-						]
+						],
+						parentRule: null
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
-			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0];
-			result.cssRules[0].cssRules[1].parentRule = result.cssRules[0];
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[1].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0].cssRules[1].parentRule = result.cssRules[0];
+			result.cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0];
+			result.cssRules[0].cssRules[1].style.parentRule = result.cssRules[0].cssRules[1];
 			return result;
 		})()
 	},
@@ -698,14 +778,17 @@ var TESTS = [
 									length: 1
 								}
 							}
-						]
+						],
+						parentRule: null
 					}
-				]
+				],
+				parentStyleSheet: null
 			};
-			result.cssRules[0].parentRule = result;
-			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0];
-			result.cssRules[0].cssRules[1].parentRule = result.cssRules[0];
-			result.cssRules[0].cssRules[2].parentRule = result.cssRules[0];
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[1].parentStyleSheet = result.cssRules[0].cssRules[2].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0].cssRules[1].parentRule = result.cssRules[0].cssRules[2].parentRule = result.cssRules[0];
+			result.cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0];
+			result.cssRules[0].cssRules[1].style.parentRule = result.cssRules[0].cssRules[1];
+			result.cssRules[0].cssRules[2].style.parentRule = result.cssRules[0].cssRules[2];
 			return result;
 		})()
 	}

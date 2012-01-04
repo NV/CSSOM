@@ -5,6 +5,7 @@ test("CSSStyleDeclaration", function(){
 	equalOwnProperties(d, {
 		0: "color",
 		length: 1,
+		parentRule: null,
 		color: "purple"
 	});
 
@@ -13,6 +14,7 @@ test("CSSStyleDeclaration", function(){
 		0: "color",
 		1: "width",
 		length: 2,
+		parentRule: null,
 		color: "purple",
 		width: "128px"
 	});
