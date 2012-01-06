@@ -1,5 +1,3 @@
-module("parse");
-
 var TESTS = [
 	{
 		input: "/* fuuuu */",
@@ -795,7 +793,43 @@ var TESTS = [
 ];
 
 
-// Run tests.
-for (var i=0; i<TESTS.length; i++) {
-	compare(TESTS[i].input, TESTS[i].result, TESTS[i].name);
+describe('CSSOM', function() {
+describe('parse', function() {
+
+	TESTS.forEach(function(test) {
+		given(test.input, function(input) {
+			var parsed = CSSOM.parse(input);
+
+			// Performance could optimized in order of magnitude but it’s alreaddy good enough
+			uncircularOwnProperties(parsed);
+			uncircularOwnProperties(test.result);
+			removeUnderscored(parsed);
+			removeUnderscored(test.result);
+			expect(parsed).toEqualOwnProperties(test.result);
+		});
+	});
+
+});
+});
+
+/**
+ * Recurcively remove all keys which start with '_'
+ * @param {Object} object
+ */
+function removeUnderscored(object) {
+	if (!object) {
+		return;
+	}
+	var keys = Object.keys(object);
+	for (var i = 0, length = keys.length; i < length; i++) {
+		var key = keys[i];
+		if (key[0] === '_') {
+			delete object[key];
+		} else {
+			var value = object[key];
+			if (typeof value === 'object') {
+				removeUnderscored(value);
+			}
+		}
+	}
 }

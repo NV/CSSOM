@@ -1,0 +1,38 @@
+<!doctype HTML>
+<html>
+<head>
+	<title>CSSOM specs</title>
+
+	<link rel="stylesheet" href="vendor/objectDiff/objectDiff.css">
+	<script src="vendor/objectDiff/objectDiff.js"></script>
+	<script src="vendor/objectDiff/jasmine-objectDiff.js"></script>
+
+	<link rel="stylesheet" href="vendor/jasmine/jasmine.css">
+	<script src="vendor/jasmine/jasmine.js"></script>
+	<link rel="stylesheet" href="vendor/jasmine-html-reporter/HtmlReporter.css">
+	<script src="vendor/jasmine-html-reporter/HtmlReporter.js"></script>
+
+	<script src="../src/loader.js"></script>
+
+	<script src="helper.js"></script>
+	<script src="utils.js"></script>
+	<script src="parse.spec.js"></script>
+	<script src="MediaList.spec.js"></script>
+	<script src="CSSStyleRule.spec.js"></script>
+	<script src="CSSStyleDeclaration.spec.js"></script>
+	<script src="CSSStyleSheet.spec.js"></script>
+	<script>
+	var htmlReporter = new jasmine.HtmlReporter();
+	var jasmineEnv = jasmine.getEnv();
+	jasmineEnv.updateInterval = 1000;
+	jasmineEnv.addReporter(htmlReporter);
+	jasmineEnv.specFilter = htmlReporter.specFilter;
+	window.onload = function() {
+		jasmineEnv.execute();
+	};
+	</script>
+	<link id="favicon_pass" href="vendor/jasmine-html-reporter/pass.png"/>
+	<link id="favicon_fail" href="vendor/jasmine-html-reporter/fail.png"/>
+</head>
+<body></body>
+</html>

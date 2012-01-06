@@ -31,4 +31,4 @@ To use it with Node.js:
 
     npm install cssom
 
-## [Tests](http://nv.github.com/CSSOM/test/)
+## [Specs](http://nv.github.com/CSSOM/spec/)
