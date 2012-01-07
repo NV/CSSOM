@@ -35,24 +35,6 @@ makeIndent.cache = {};
 
 
 /**
- * buildPath(2) -> '../..'
- * @param {number} level
- * @return {string}
- */
-function buildPath(level) {
-	if (level === 0) {
-		return '.';
-	} else {
-		var result = '..';
-		for (var i = 1; i < level; i++) {
-			result += '/..';
-		}
-		return result;
-	}
-}
-
-
-/**
  * stringifyObjectKey('color') -> 'color'
  * stringifyObjectKey('background-color') -> '"background-color"'
  * @param {string} key
@@ -72,16 +54,15 @@ function stringifyObjectKey(key) {
 function inspect(object) {
 
 	var root = document.createDocumentFragment();
-	_inspect(root, object, 0, []);
+	_inspect(root, object, 0);
 	return root;
 
 	/**
 	 * @param {DocumentFragment} root
 	 * @param {Object} object
 	 * @param {number} depth
-	 * @param {Array} stack
 	 */
-	function _inspect(root, object, depth, stack) {
+	function _inspect(root, object, depth) {
 		switch (typeof object) {
 			case 'object':
 			case 'null': // ES 5.1
@@ -90,15 +71,7 @@ function inspect(object) {
 					root.appendChild(document.createTextNode('null'));
 					break;
 				}
-
-				var level = stack.indexOf(object);
-				if (level !== -1) {
-					root.appendChild(document.createTextNode(buildPath(depth - level)));
-					break;
-				}
 				depth++;
-				var stackLength = stack.push(object);
-
 				var indent = document.createTextNode(makeIndent(depth));
 				var span = document.createElement('span');
 				span.textContent = ',\n';
@@ -115,8 +88,7 @@ function inspect(object) {
 						root.appendChild(span);
 						for (var i = 0; i < length; i++) {
 							root.appendChild(indent.cloneNode(true));
-							_inspect(root, object[i], depth, stack);
-							stack.length = stackLength;
+							_inspect(root, object[i], depth);
 							if (i < length - 1) {
 								root.appendChild(comma.cloneNode(true));
 							}
@@ -143,8 +115,7 @@ function inspect(object) {
 							root.appendChild(indent.cloneNode(true));
 							root.appendChild(document.createTextNode(stringifyObjectKey(key)));
 							root.appendChild(colon.cloneNode(true));
-							_inspect(root, object[key], depth, stack);
-							stack.length = stackLength;
+							_inspect(root, object[key], depth);
 							if (i < length - 1) {
 								root.appendChild(comma.cloneNode(true));
 							}
@@ -187,6 +158,7 @@ function outputUpdated() {
 	if (value !== style.prevValue) {
 		style.prevValue = value;
 		var css = CSSOM.parse(value);
+		uncircularOwnProperties(css);
 		output.innerHTML = '';
 		output.appendChild(inspect(css));
 		serialized.innerHTML = css.toString();
