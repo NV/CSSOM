@@ -27,5 +27,8 @@
 			"type": "MIT",
 			"url": "http://creativecommons.org/licenses/MIT/"
 		}
-	]
+	],
+	"scripts": {
+		"prepublish": "jake lib/index.js"
+	}
 }
