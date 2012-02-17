@@ -708,12 +708,133 @@ var TESTS = [
 		})()
 	},
 	{
+		// Non-vendor prefixed @keyframes rule, from Twitter Bootstrap (progress-bars):
+		input: '@keyframes progress-bar-stripes {\n  from  { background-position: 0 0; }\n  to    { background-position: 40px 0; }\n}',
+		result: (function () {
+			var result = {
+				cssRules: [
+					{
+						name: "progress-bar-stripes",
+						_vendorPrefix: undefined,
+						cssRules: [
+							{
+								keyText: "from",
+								style: {
+									0: "background-position",
+									'background-position': "0 0",
+									length: 1
+								}
+							},
+							{
+								keyText: "to",
+								style: {
+									0: "background-position",
+									'background-position': "40px 0",
+									length: 1
+								}
+							}
+						],
+						parentRule: null
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[1].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0].cssRules[1].parentRule = result.cssRules[0];
+			result.cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0];
+			result.cssRules[0].cssRules[1].style.parentRule = result.cssRules[0].cssRules[1];
+			return result;
+		})()
+	},
+	{
+		// @keyframes with invalid vendor prefix followed by a valid one (make sure that the RegExp.lastIndex trick works as expected):
+		input: '@-moz-keyframes foo {} @--keyframes bar {} @-webkit-keyframes quux {}',
+		result: (function () {
+			var result = {
+				cssRules: [
+					{
+						name: "foo",
+						_vendorPrefix: "-moz-",
+						cssRules: [],
+						parentRule: null
+					},
+					{
+						selectorText: "@--keyframes bar",
+						style: {
+							length: 0
+						},
+						parentRule: null,
+						__starts: 0,
+						__ends: 14
+					},
+					{
+						name: "quux",
+						_vendorPrefix: "-webkit-",
+						cssRules: [],
+						parentRule: null
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result.cssRules[1].parentStyleSheet = result.cssRules[2].parentStyleSheet = result;
+			result.cssRules[1].style.parentRule = result.cssRules[1];
+			return result;
+		})()
+	},
+	{
+		input: "@-some-ridiculously-long-vendor-prefix-that-must-be-supported-keyframes therulename /*comment*/{0%{top:0px; left:0px; background:red;}100% {top:4em; left:40px; background:maroon;}}",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						name: "therulename",
+						_vendorPrefix: '-some-ridiculously-long-vendor-prefix-that-must-be-supported-',
+						cssRules: [
+							{
+								keyText: "0%",
+								style: {
+									0: "top",
+									1: "left",
+									2: "background",
+									top: "0px",
+									left: "0px",
+									background: "red",
+									length: 3
+								}
+							},
+							{
+								keyText: "100%",
+								style: {
+									0: "top",
+									1: "left",
+									2: "background",
+									top: "4em",
+									left: "40px",
+									background: "maroon",
+									length: 3
+								}
+							}
+						],
+						parentRule: null
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[1].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0].cssRules[1].parentRule = result.cssRules[0];
+			result.cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0];
+			result.cssRules[0].cssRules[1].style.parentRule = result.cssRules[0].cssRules[1];
+			return result;
+		})()
+	},
+	{
 		input: "@-webkit-keyframes mymove {\nfrom {top:0px}\nto {top:200px}\n}",
 		result: (function() {
 			var result = {
 				cssRules: [
 					{
 						name: "mymove",
+						_vendorPrefix: '-webkit-',
 						cssRules: [
 							{
 								keyText: "from",
@@ -751,6 +872,7 @@ var TESTS = [
 				cssRules: [
 					{
 						name: "mymovepercent",
+						_vendorPrefix: '-webkit-',
 						cssRules: [
 							{
 								keyText: "0%",
@@ -813,7 +935,7 @@ describe('parse', function() {
 });
 
 /**
- * Recurcively remove all keys which start with '_'
+ * Recursively remove all keys which start with '_', except "_vendorPrefix", which needs to be tested against.
  * @param {Object} object
  */
 function removeUnderscored(object) {
@@ -823,7 +945,7 @@ function removeUnderscored(object) {
 	var keys = Object.keys(object);
 	for (var i = 0, length = keys.length; i < length; i++) {
 		var key = keys[i];
-		if (key[0] === '_') {
+		if (key[0] === '_' && key !== '_vendorPrefix') {
 			delete object[key];
 		} else {
 			var value = object[key];
