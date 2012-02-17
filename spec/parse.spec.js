@@ -747,6 +747,41 @@ var TESTS = [
 		})()
 	},
 	{
+		// @keyframes with invalid vendor prefix followed by a valid one (make sure that the RegExp.lastIndex trick works as expected):
+		input: '@-moz-keyframes foo {} @--keyframes bar {} @-webkit-keyframes quux {}',
+		result: (function () {
+			var result = {
+				cssRules: [
+					{
+						name: "foo",
+						_vendorPrefix: "-moz-",
+						cssRules: [],
+						parentRule: null
+					},
+					{
+						selectorText: "@--keyframes bar",
+						style: {
+							length: 0
+						},
+						parentRule: null,
+						__starts: 0,
+						__ends: 14
+					},
+					{
+						name: "quux",
+						_vendorPrefix: "-webkit-",
+						cssRules: [],
+						parentRule: null
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result.cssRules[1].parentStyleSheet = result.cssRules[2].parentStyleSheet = result;
+			result.cssRules[1].style.parentRule = result.cssRules[1];
+			return result;
+		})()
+	},
+	{
 		input: "@-some-ridiculously-long-vendor-prefix-that-must-be-supported-keyframes therulename /*comment*/{0%{top:0px; left:0px; background:red;}100% {top:4em; left:40px; background:maroon;}}",
 		result: (function() {
 			var result = {
