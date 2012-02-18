@@ -708,6 +708,31 @@ var TESTS = [
 		})()
 	},
 	{
+		input: "@font-face { font-family: Delicious; font-weight: bold; src: url('Delicious-Bold.otf'); }",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						parentRule: null,
+						style: {
+							0: 'font-family',
+							1: 'font-weight',
+							2: 'src',
+							'font-family': 'Delicious',
+							'font-weight': 'bold',
+							'src': 'url(\'Delicious-Bold.otf\')',
+							length: 3
+						}
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
+			return result;
+		})()
+	},
+	{
 		// Non-vendor prefixed @keyframes rule, from Twitter Bootstrap (progress-bars):
 		input: '@keyframes progress-bar-stripes {\n  from  { background-position: 0 0; }\n  to    { background-position: 40px 0; }\n}',
 		result: (function () {
