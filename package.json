@@ -2,7 +2,7 @@
 	"name": "cssom",
 	"description": "CSS Object Model implementation and CSS parser",
 	"keywords": ["CSS", "CSSOM", "parser", "styleSheet"],
-	"version": "0.2.4",
+	"version": "0.2.5",
 	"homepage": "https://github.com/NV/CSSOM",
 	"author": "Nikita Vasilyev <me@elv1s.ru>",
 	"repository": {
