@@ -65,7 +65,6 @@ function inspect(object) {
 	function _inspect(root, object, depth) {
 		switch (typeof object) {
 			case 'object':
-			case 'null': // ES 5.1
 				if (!object) {
 					//null
 					root.appendChild(document.createTextNode('null'));
