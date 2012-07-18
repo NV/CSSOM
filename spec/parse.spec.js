@@ -956,8 +956,29 @@ describe('parse', function() {
 		});
 	});
 
+	given('a{content:"\\""}', function(input) {
+		var parsed = CSSOM.parse(input);
+		expect(parsed.cssRules[0].style.content).toBe('"\\""');
+	});
+
+	given("a{content:'\\''}", function(input) {
+		var parsed = CSSOM.parse(input);
+		expect(parsed.cssRules[0].style.content).toBe("'\\''");
+	});
+
+	given('a{content:"abc\\"\\"d\\"ef"}', function(input) {
+		var parsed = CSSOM.parse(input);
+		expect(parsed.cssRules[0].style.content).toBe('"abc\\"\\"d\\"ef"');
+	});
+
+	given("a{content:'abc\\'\\'d\\'ef'}", function(input) {
+		var parsed = CSSOM.parse(input);
+		expect(parsed.cssRules[0].style.content).toBe("'abc\\'\\'d\\'ef'");
+	});
+
 });
 });
+
 
 /**
  * Recursively remove all keys which start with '_', except "_vendorPrefix", which needs to be tested against.
