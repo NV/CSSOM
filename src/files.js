@@ -10,6 +10,8 @@ exports.files = [
 	"CSSStyleSheet",
 	"CSSKeyframesRule",
 	"CSSKeyframeRule",
+	"CSSValue",
+	"CSSValueExpression",
 	"parse",
 	"clone"
 ];
