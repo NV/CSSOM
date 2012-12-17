@@ -10,6 +10,7 @@ exports.files = [
 	"CSSStyleSheet",
 	"CSSKeyframesRule",
 	"CSSKeyframeRule",
+    "CSSDocumentRule",
 	"CSSValue",
 	"CSSValueExpression",
 	"parse",
