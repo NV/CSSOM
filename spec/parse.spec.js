@@ -936,6 +936,98 @@ var TESTS = [
 			result.cssRules[0].cssRules[2].style.parentRule = result.cssRules[0].cssRules[2];
 			return result;
 		})()
+	},
+	{
+		input: "@-moz-document url(http://www.w3.org/), url-prefix(http://www.w3.org/Style/), domain(mozilla.org), regexp(\"https:.*\")\n{\n/*comments*/\nbody { color: purple; background: yellow; }\n}",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						matcher: {
+							0: "url(http://www.w3.org/)",
+							1: "url-prefix(http://www.w3.org/Style/)",
+							2: "domain(mozilla.org)",
+							3: "regexp(\"https:.*\")",
+							length: 4
+						},
+						cssRules: [
+							{
+								selectorText: "body",
+								style: {
+									0: "color",
+									1: "background",
+									length: 2,
+									__starts: 138,
+									color: "purple",
+									background: "yellow"
+								},
+								__starts: 133,
+								__ends: 176
+							}
+						],
+						parentRule: null,
+						__starts: 0,
+						__ends: 178
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0];
+			result.cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0];
+
+			return result;
+		})()
+	},
+	{
+		input: "a{}@-moz-document/**/url-prefix(http://www.w3.org/Style/){body { color: purple; background: yellow; }}",
+		result: (function(){
+			var result = {
+				cssRules: [
+					{
+						selectorText: 'a',
+						style: {
+							length: 0,
+							__starts: 1
+						},
+						parentRule: null,
+						__starts: 0,
+						__ends: 3
+					},
+					{
+						matcher: {
+							0: "url-prefix(http://www.w3.org/Style/)",
+							length: 1
+						},
+						cssRules: [
+							{
+								selectorText: "body",
+								style: {
+									0: "color",
+									1: "background",
+									length: 2,
+									__starts: 64,
+									color: "purple",
+									background: "yellow"
+								},
+								__starts: 59,
+								__ends: 102
+							}
+						],
+						parentRule: null,
+						__starts: 3,
+						__ends: 103
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result.cssRules[1].parentStyleSheet = result.cssRules[1].cssRules[0].parentStyleSheet = result;
+			result.cssRules[1].cssRules[0].parentRule = result.cssRules[1];
+			result.cssRules[1].cssRules[0].style.parentRule = result.cssRules[1].cssRules[0];
+			result.cssRules[0].style.parentRule = result.cssRules[0];
+
+			return result;
+		})()
 	}
 ];
 
