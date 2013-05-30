@@ -424,6 +424,54 @@ var TESTS = [
 		})()
 	},
 	{
+		input: ".shadow{-webkit-box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75); -moz-box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75); box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75)}",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						selectorText: '.shadow',
+						parentRule: null,
+						style: {
+							0: '-webkit-box-shadow',
+							1: '-moz-box-shadow',
+							2: 'box-shadow',
+							'-webkit-box-shadow': '7px 7px 5px rgba(50, 50, 50, 0.75)',
+							'-moz-box-shadow': '7px 7px 5px rgba(50, 50, 50, 0.75)',
+							'box-shadow': '7px 7px 5px rgba(50, 50, 50, 0.75)',
+							length: 3
+						}
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
+			return result;
+		})()
+	},
+	{
+		input: ".background-gradient{background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1a82f7), to(#2F2727)); background: -webkit-linear-gradient(top, #2F2727, #1a82f7); background: -moz-linear-gradient(top, #2F2727, #1a82f7); background: -ms-linear-gradient(top, #2F2727, #1a82f7); background: -o-linear-gradient(top, #2F2727, #1a82f7)}",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						selectorText: '.background-gradient',
+						parentRule: null,
+						style: {
+							0: 'background',
+							background: '-webkit-gradient(linear, 0% 0%, 0% 100%, from(#1a82f7), to(#2F2727)); background: -webkit-linear-gradient(top, #2F2727, #1a82f7); background: -moz-linear-gradient(top, #2F2727, #1a82f7); background: -ms-linear-gradient(top, #2F2727, #1a82f7); background: -o-linear-gradient(top, #2F2727, #1a82f7)',
+							length: 1
+						}
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
+			return result;
+		})()
+	},
+	{
 		input: "@media handheld, only screen and (max-device-width: 480px) {body{max-width:480px}}",
 		result: (function() {
 			var result = {
