@@ -18,5 +18,12 @@ describe('CSSStyleSheet', function() {
 		expect(s.cssRules).toEqual([]);
 	});
 
+	describe('insertRule', function () {
+		it('should correctly set the parent stylesheet', function () {
+			var s = new CSSOM.CSSStyleSheet;
+			s.insertRule("a {color: blue}", 0);
+			expect(s.cssRules[0].parentStyleSheet).toBe(s);
+		});
+	});
 });
 });
