@@ -1,0 +1,8 @@
+{
+  "name": "cssom",
+  "version": "0.2.6",
+  "main": [
+    "./dist/CSSOM.js"
+  ],
+  "dependencies": {}
+}

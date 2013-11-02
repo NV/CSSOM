@@ -11,18 +11,18 @@ function stripCommonJS(text) {
 }
 
 desc("Packages lib files into the one huge");
-task("default", ["build/CSSOM.js"]);
+task("default", ["dist/CSSOM.js"]);
 
-directory("build");
+directory("dist");
 
-file("build/CSSOM.js", ["src/files.js", "src/CSSOM.js", "build"], function() {
+file("dist/CSSOM.js", ["src/files.js", "src/CSSOM.js", "dist"], function() {
 	var parts = [readFile("src/CSSOM.js")];
 	require("./src/files").files.forEach(function(path) {
 		var text = readFile("lib/" + path + ".js");
 		parts.push(stripCommonJS(text).trimLeft());
 	});
-	FS.writeFileSync("build/CSSOM.js", parts.join(""));
-	process.stdout.write("build/CSSOM.js is done\n");
+	FS.writeFileSync("dist/CSSOM.js", parts.join(""));
+	process.stdout.write("dist/CSSOM.js is done\n");
 });
 
 desc("Creates index file for npm package");
