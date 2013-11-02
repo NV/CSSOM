@@ -20,7 +20,7 @@
 		"node": ">=0.2.0"
 	},
 	"devDependencies": {
-		"jake": "0.2.x"
+		"jake": "~0.7.3"
 	},
 	"licenses": [
 		{
