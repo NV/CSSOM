@@ -138,16 +138,6 @@ function inspect(object) {
 }
 
 
-var errors = [];
-if (!("__defineGetter__" in {})) {
-	errors.push("Object.prototype.__defineGetter__ isn’t supported");
-}
-if (errors.length) {
-	byId("message").innerHTML = errors.join("<br>");
-	document.body.className = "error";
-	throw errors.join("\n\n");
-}
-
 var style = byId("style");
 var output = byId("output");
 var serialized = byId("serialized");
