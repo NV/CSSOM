@@ -22,14 +22,17 @@ CSSOM.js is a CSS parser written in pure JavaScript. It also a partial implement
 Works well in Google Chrome 6+, Safari 5+, Firefox 3.6+, Opera 10.63+.
 Doesn't work in IE < 9 because of unsupported getters/setters.
 
-To use CSSOM.js in the browser you might want to build a one-file version with [Jake](http://github.com/mde/jake):
+To use CSSOM.js in the browser you might want to build a one-file version that exposes CSSOM global variable:
 
-    ➤ jake
+    ➤ git clone https://github.com/NV/CSSOM.git
+    ➤ cd CSSOM
+    ➤ npm install -d
+    ➤ ./node_modules/.bin/jake
     build/CSSOM.js is done
 
-To use it with Node.js:
+To use it with Node.js or any other CommonJS loader:
 
-    npm install cssom
+    ➤ npm install cssom
 
 ## [Specs](http://nv.github.com/CSSOM/spec/)
 
