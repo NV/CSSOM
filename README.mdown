@@ -34,6 +34,24 @@ To use it with Node.js or any other CommonJS loader:
 
     ➤ npm install cssom
 
+## Don’t use it if...
+
+You parse CSS to mungle, minify or reformat the following code:
+
+```css
+div {
+  background: gray;
+  background: linear-gradient(to bottom, white 0%, black 100%);
+}
+```
+
+In CSSOM, `background: gray` [gets overwritten](http://nv.github.io/CSSOM/docs/parse.html#css=div%20%7B%0A%20%20%20%20%20%20background%3A%20gray%3B%0A%20%20%20%20background%3A%20linear-gradient(to%20bottom%2C%20white%200%25%2C%20black%20100%25)%3B%0A%7D). The last same-name property always overwrites all the previous ones.
+
+This pattern is often used to give browsers that don’t understand linear gradients a fallback solution (e.g. gray color in the example). If you do CSS mungling, minification, image inlining, and such, CSSOM.js is not a good solution for you, look for alternatives instead:
+
+  * [reworkcss/css](https://github.com/reworkcss/css)
+  * [csso](https://github.com/css/csso)
+
 
 ## [Specs](http://nv.github.com/CSSOM/spec/)
 
