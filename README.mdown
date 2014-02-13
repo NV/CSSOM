@@ -52,6 +52,7 @@ The last same-name property always overwrites all the previous ones.
 
 If you do CSS mungling, minification, image inlining, and such, CSSOM.js is not a good solution for you, look for alternatives instead:
 
+  * one of the forks: [1](https://github.com/NV/CSSOM/pull/53), [2](https://github.com/NV/CSSOM/pull/57)
   * [reworkcss/css](https://github.com/reworkcss/css)
   * [csso](https://github.com/css/csso)
 
