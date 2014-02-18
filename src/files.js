@@ -6,6 +6,7 @@ exports.files = [
 	"CSSMediaRule",
 	"CSSImportRule",
 	"CSSFontFaceRule",
+	"CSSHostRule",
 	"StyleSheet",
 	"CSSStyleSheet",
 	"CSSKeyframesRule",
