@@ -733,6 +733,33 @@ var TESTS = [
 		})()
 	},
 	{
+		input: "@host { body { background: red; } }",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						cssRules: {
+							0: {
+								selectorText: "body",
+								style: {
+									0: "background",
+									length: 1,
+									parentRule: "..",
+									background: "red"
+								}
+							}
+						},
+						parentRule: null
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0];
+			return result;
+		})()
+	},
+	{
 		// Non-vendor prefixed @keyframes rule, from Twitter Bootstrap (progress-bars):
 		input: '@keyframes progress-bar-stripes {\n  from  { background-position: 0 0; }\n  to    { background-position: 40px 0; }\n}',
 		result: (function () {
