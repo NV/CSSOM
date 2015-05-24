@@ -14,10 +14,7 @@
 	"devDependencies": {
 		"jake": "~0.7.3"
 	},
-	"license": {
-		"type": "MIT",
-		"url": "http://creativecommons.org/licenses/MIT/"
-	},
+	"license": "MIT",
 	"scripts": {
 		"prepublish": "jake lib/index.js"
 	}
