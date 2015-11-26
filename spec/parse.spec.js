@@ -402,6 +402,28 @@ var TESTS = [
 		})()
 	},
 	{
+		input: "body{background-image: url(')');}",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						selectorText: 'body',
+						parentRule: null,
+						style: {
+							0: 'background-image',
+							'background-image': "url(')')",
+							length: 1
+						}
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
+			return result;
+		})()
+	},
+	{
 		input: ".gradient{background: -moz-linear-gradient(/*);*/top, #1E5799 0%, #7db9e8 100%)}",
 		result: (function() {
 			var result = {
