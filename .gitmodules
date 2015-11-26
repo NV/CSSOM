@@ -1,6 +1,6 @@
 [submodule "spec/vendor/objectDiff"]
 	path = spec/vendor/objectDiff
-	url = git://github.com/NV/objectDiff.js.git
+	url = https://github.com/NV/objectDiff.js.git
 [submodule "spec/vendor/jasmine-html-reporter"]
 	path = spec/vendor/jasmine-html-reporter
-	url = git://github.com/NV/jasmine-html-reporter.git
+	url = https://github.com/NV/jasmine-html-reporter.git
