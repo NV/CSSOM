@@ -52,7 +52,7 @@ The last same-name property always overwrites all the previous ones.
 
 If you do CSS mungling, minification, image inlining, and such, CSSOM.js is no good for you, considere using one of the following:
 
-  * one of the forks: [1](https://github.com/NV/CSSOM/pull/53), [2](https://github.com/NV/CSSOM/pull/57)
+  * [postcss](https://github.com/postcss/postcss)
   * [reworkcss/css](https://github.com/reworkcss/css)
   * [csso](https://github.com/css/csso)
   * [mensch](https://github.com/brettstimmerman/mensch)
