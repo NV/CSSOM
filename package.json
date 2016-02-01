@@ -7,11 +7,11 @@
     "parser",
     "styleSheet"
   ],
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Nikita Vasilyev <me@elv1s.ru>",
   "repository": "NV/CSSOM",
   "files": [
-  	"lib/"
+    "lib/"
   ],
   "main": "./lib/index.js",
   "devDependencies": {
