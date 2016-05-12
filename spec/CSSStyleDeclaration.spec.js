@@ -29,10 +29,13 @@ describe('CSSStyleDeclaration', function() {
 			}
 		});
 
-		expect(d.cssText).toBe('color: purple; width: 128px !important;');
+		d.setProperty('opacity', 0);
+
+		expect(d.cssText).toBe('color: purple; width: 128px !important; opacity: 0;');
 
 		expect(d.getPropertyValue('color')).toBe('purple');
 		expect(d.getPropertyValue('width')).toBe('128px');
+		expect(d.getPropertyValue('opacity')).toBe('0');
 		expect(d.getPropertyValue('position')).toBe('');
 
 		expect(d.getPropertyPriority('color')).toBe('');
@@ -41,6 +44,7 @@ describe('CSSStyleDeclaration', function() {
 
 		d.setProperty('color', 'green');
 		d.removeProperty('width');
+		d.removeProperty('opacity');
 
 		expect(d.cssText).toBe('color: green;');
 	});
