@@ -591,20 +591,10 @@ var TESTS = [
 	},
 	{
 		input: "@mediaall {}",
-		result: (function() {
-			var result = {
-				cssRules: [
-					{
-						parentRule: null,
-						media: ["all"],
-						cssRules: {}
-					}
-				],
-				parentStyleSheet: null
-			};
-			result.cssRules[0].parentStyleSheet = result;
-			return result;
-		})()
+		result: {
+			cssRules: [],
+			parentStyleSheet: null
+		}
 	},
 	{
 		input: "some invalid junk @media projection {body{background:black}}",
