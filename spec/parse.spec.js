@@ -1012,6 +1012,38 @@ var TESTS = [
 		})()
 	},
 	{
+		input: "@-moz-document url-prefix() {@media only screen{.qwe{}}}",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						parentRule: null,
+						matcher: ["url-prefix()"],
+						cssRules: [
+							{
+								media: ["only screen"],
+								cssRules: [
+									{
+										selectorText: ".qwe",
+										style: []
+									}
+								]
+							}
+						]
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0];
+			result.cssRules[0].cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].cssRules[0].parentRule = result.cssRules[0].cssRules[0];
+			result.cssRules[0].cssRules[0].cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0].cssRules[0];
+			return result;
+		})()
+	},
+	{
 		input: "a{}@-moz-document/**/url-prefix(http://www.w3.org/Style/){body { color: purple; background: yellow; }}",
 		result: (function(){
 			var result = {
