@@ -446,6 +446,28 @@ var TESTS = [
 		})()
 	},
 	{
+		input: ".calc{width: calc(100% - 15px);}",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						selectorText: '.calc',
+						parentRule: null,
+						style: {
+							0: 'width',
+							width: 'calc(100% - 15px)',
+							length: 1
+						}
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
+			return result;
+		})()
+	},
+	{
 		input: ".gradient{background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);}",
 		result: (function() {
 			var result = {
