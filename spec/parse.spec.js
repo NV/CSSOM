@@ -446,6 +446,28 @@ var TESTS = [
 		})()
 	},
 	{
+		input: ".gradient{background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);}",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						selectorText: '.gradient',
+						parentRule: null,
+						style: {
+							0: 'background-image',
+							"background-image": 'linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%)',
+							length: 1
+						}
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].style.parentRule = result.cssRules[0];
+			return result;
+		})()
+	},
+	{
 		input: "@media handheld, only screen and (max-device-width: 480px) {body{max-width:480px}}",
 		result: (function() {
 			var result = {
