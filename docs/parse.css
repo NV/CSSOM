@@ -10,18 +10,6 @@ body {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
-@supports (min-height) {
-	.foo {
-		min-height: 100%;
-	}
-}
-
-@media (min-width: 100px) {
-	.foo {
-		color: #333;
-	}
-}
 table {
 	width: 100%;
 	table-layout: fixed;
