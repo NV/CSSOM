@@ -131,7 +131,9 @@ function inspect(object) {
 				break;
 
 			default:
-				root.appendChild(document.createTextNode(object.toString()));
+				if (object) {
+					root.appendChild(document.createTextNode(object.toString()));
+				}
 		}
 	}
 
