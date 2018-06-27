@@ -677,6 +677,62 @@ var TESTS = [
 		})()
 	},
 	{
+		input: "@supports (display: grid) { html { display: grid; } }",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						conditionText: "(display: grid)",
+						cssRules: [
+							{
+								selectorText: "html",
+								style: {
+									0: "display",
+									display: "grid",
+									length: 1
+								},
+							}
+						],
+						parentRule: null,
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0];
+			result.cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0];
+			return result;
+		})()
+	},
+	{
+		input: "@supports not (display: grid) { html { display: flex; } }",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						conditionText: "not (display: grid)",
+						cssRules: [
+							{
+								selectorText: "html",
+								style: {
+									0: "display",
+									display: "flex",
+									length: 1
+								},
+							}
+						],
+						parentRule: null,
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0];
+			result.cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0];
+			return result;
+		})()
+	},
+	{
 		input: '@import url(partial.css);\ni {font-style: italic}',
 		result: (function() {
 			var result = {
