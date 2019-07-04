@@ -7,18 +7,12 @@
     "parser",
     "styleSheet"
   ],
-  "version": "0.3.6",
+  "version": "0.3.7",
   "author": "Nikita Vasilyev <me@elv1s.ru>",
   "repository": "NV/CSSOM",
   "files": [
     "lib/"
   ],
   "main": "./lib/index.js",
-  "devDependencies": {
-    "jake": "~0.7.3"
-  },
-  "license": "MIT",
-  "scripts": {
-    "prepublish": "jake lib/index.js"
-  }
+  "license": "MIT"
 }
