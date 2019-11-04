@@ -677,6 +677,48 @@ var TESTS = [
 		})()
 	},
 	{
+		input: "@media screen{a{color:blue !important;background:red;} @font-face { font-family: 'Arial2'; } }",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						media: {
+							0: "screen",
+							length: 1
+						},
+						cssRules: [
+							{
+								selectorText: "a",
+								style: {
+									0: "color",
+									1: "background",
+									color: "blue",
+									background: "red",
+									length: 2
+								}
+							},
+							{
+								style: {
+									0: "font-family",
+									"font-family": "'Arial2'",
+									length: 1
+								}
+							},
+							".."
+						],
+						parentRule: null
+					}
+				],
+				parentStyleSheet: null
+			};
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[1].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0].cssRules[1].parentRule = result.cssRules[0];
+			result.cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0];
+			result.cssRules[0].cssRules[1].style.parentRule = result.cssRules[0].cssRules[1];
+			return result;
+		})()
+	},
+	{
 		input: "@supports (display: grid) { html { display: grid; } }",
 		result: (function() {
 			var result = {
