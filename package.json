@@ -7,7 +7,7 @@
     "parser",
     "styleSheet"
   ],
-  "version": "0.4.1",
+  "version": "0.4.2",
   "author": "Nikita Vasilyev <me@elv1s.ru>",
   "repository": "NV/CSSOM",
   "files": [
