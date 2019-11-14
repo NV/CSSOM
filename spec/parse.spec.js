@@ -703,8 +703,7 @@ var TESTS = [
 									"font-family": "'Arial2'",
 									length: 1
 								}
-							},
-							".."
+							}
 						],
 						parentRule: null
 					}
@@ -715,6 +714,54 @@ var TESTS = [
 			result.cssRules[0].cssRules[0].parentRule = result.cssRules[0].cssRules[1].parentRule = result.cssRules[0];
 			result.cssRules[0].cssRules[0].style.parentRule = result.cssRules[0].cssRules[0];
 			result.cssRules[0].cssRules[1].style.parentRule = result.cssRules[0].cssRules[1];
+			return result;
+		})()
+	},
+	{
+		input: "@media (min-width: 768px){@media (min-resolution: 0.001dpcm) {a{color: green}}}",
+		result: (function() {
+			var result = {
+				cssRules: [
+					{
+						parentRule: null,
+						media: {
+							0: "(min-width: 768px)",
+							length: 1
+						},
+						cssRules: [
+							{
+								media: {
+									0: "(min-resolution: 0.001dpcm)",
+									length: 1
+								},
+								cssRules: [
+									{
+										selectorText: "a",
+										style: {
+											0: "color",
+											length: 1,
+											parentRule: "..",
+											_importants: {
+												color: ""
+											},
+											color: "green"
+										}
+									}
+								],
+								parentRule: null // This is currently incorrect.
+							}
+						]
+					}
+				],
+				parentStyleSheet: null
+			};
+
+			result.cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].parentStyleSheet = result.cssRules[0].cssRules[0].cssRules[0].parentStyleSheet = result;
+			result.cssRules[0].cssRules[0].cssRules[0].parentRule = result.cssRules[0].cssRules[0];
+
+			// This is currently incorrect.
+			// result.cssRules[0].cssRules[0].parentRule = result.cssRules[0];
+
 			return result;
 		})()
 	},
