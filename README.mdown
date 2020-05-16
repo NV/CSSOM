@@ -46,9 +46,9 @@ div {
 
 This pattern is often used to give browsers that don’t understand linear gradients a fallback solution (e.g. gray color in the example).
 In CSSOM, `background: gray` [gets overwritten](http://nv.github.io/CSSOM/docs/parse.html#css=div%20%7B%0A%20%20%20%20%20%20background%3A%20gray%3B%0A%20%20%20%20background%3A%20linear-gradient(to%20bottom%2C%20white%200%25%2C%20black%20100%25)%3B%0A%7D).
-It doesn't get preserved.
+It does **NOT** get preserved.
 
-If you do CSS mungling, minification, image inlining, and such, CSSOM.js is no good for you, considere using one of the following:
+If you do CSS mungling, minification, or image inlining, considere using one of the following:
 
   * [postcss](https://github.com/postcss/postcss)
   * [reworkcss/css](https://github.com/reworkcss/css)
