@@ -149,6 +149,7 @@ function outputUpdated() {
 	if (value !== style.prevValue) {
 		style.prevValue = value;
 		var css = CSSOM.parse(value);
+		window._last_parsed = css;
 		uncircularOwnProperties(css);
 		output.innerHTML = '';
 		output.appendChild(inspect(css));
