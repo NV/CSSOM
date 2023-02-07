@@ -17,7 +17,7 @@ CSSOM.js is a CSS parser written in pure JavaScript. It is also a partial implem
     }
 
 
-## [Parser demo](http://nv.github.com/CSSOM/docs/parse.html)
+## [Parser demo](http://nv.github.io/CSSOM/docs/parse.html)
 
 Works well in Google Chrome 6+, Safari 5+, Firefox 3.6+, Opera 10.63+.
 Doesn't work in IE < 9 because of unsupported getters/setters.
