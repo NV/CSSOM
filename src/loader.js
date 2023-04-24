@@ -20,7 +20,7 @@ loadScripts(['../src/files'], function() {
 });
 
 /**
- * Simplefied version of https://gist.github.com/603980
+ * Simplified version of https://gist.github.com/603980
  * @param {Array.<string>} paths
  * @param {Function} callback
  */
